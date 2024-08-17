@@ -4,11 +4,13 @@ import axios from "axios";
 import env from "dotenv";
 import bodyParser from "body-parser";
 import NodeCache from 'node-cache';
+import compression from "compression";
 
 const app = express();
 const port = 3000;
 const cache = new NodeCache({ stdTTL: 3600 });
 
+app.use(compression());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cors());
@@ -65,9 +67,9 @@ app.get('/games', async (req, res) => {
         try {
             const igdbResponse = await axios.post('https://api.igdb.com/v4/games', query, {
                 headers: {
-                    'Accept': 'application/json',
-                    "Client-ID": process.env.IGDB_CLIENT_ID,
-                    "Authorization": `Bearer ${access_token}`,
+                    'Accept-Encoding': 'gzip',
+                    'Client-ID': process.env.IGDB_CLIENT_ID,
+                    'Authorization': `Bearer ${access_token}`,    
                 }
             });
 
