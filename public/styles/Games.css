@@ -46,7 +46,7 @@ body {
   color: var(--text-color);
 }
 
-.search-bar::placeholder{
+.search-bar::placeholder {
   color: var(--muted-text-color);
 }
 

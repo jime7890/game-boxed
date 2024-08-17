@@ -3,9 +3,11 @@ import cors from "cors";
 import axios from "axios";
 import env from "dotenv";
 import bodyParser from "body-parser";
+import NodeCache from 'node-cache';
 
 const app = express();
 const port = 3000;
+const cache = new NodeCache({ stdTTL: 3600 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -16,22 +18,41 @@ app.get("/", (req, res) => {
     res.render("landing.ejs");
 })
 
-async function tokenRequest() {
-    const response = await axios.post("https://id.twitch.tv/oauth2/token", null, {
-        params: {
-            client_id: process.env.IGDB_CLIENT_ID,
-            client_secret: process.env.IGDB_CLIENT_SECRET,
-            grant_type: 'client_credentials'
-        }
-    });
+const getAccessToken = async () => {
+    let accessToken = cache.get('igdbAccessToken');
 
-    return response;
-}
+    // If there's already an access token in the cache, use that and end the function
+    if (accessToken) {
+        return accessToken;
+    }
+
+    // Requests an access token
+    try {
+        const response = await axios.post("https://id.twitch.tv/oauth2/token", null, {
+            params: {
+                client_id: process.env.IGDB_CLIENT_ID,
+                client_secret: process.env.IGDB_CLIENT_SECRET,
+                grant_type: 'client_credentials'
+            }
+        });
+
+        accessToken = response.data.access_token;
+
+        // Access token is saved in the cache
+        cache.set('igdbAccessToken', accessToken);
+
+        // Returns the a new token back to the calling function
+        return accessToken;
+    } catch (error) {
+        console.error("Error fetching access token", error);
+        throw new Error("Unable to fetch access token");
+    }
+};
 
 app.get('/games', async (req, res) => {
     const searchQuery = req.query.search;
-
     let query = '';
+
     if (searchQuery) {
         query = `search "${searchQuery}"; fields name, rating, cover.url, slug, first_release_date, summary; limit 20;`;
     } else {
@@ -39,8 +60,7 @@ app.get('/games', async (req, res) => {
     }
 
     try {
-        const tokenResponse = await tokenRequest();
-        const access_token = tokenResponse.data.access_token;
+        const access_token = await getAccessToken();
 
         try {
             const igdbResponse = await axios.post('https://api.igdb.com/v4/games', query, {
@@ -56,12 +76,12 @@ app.get('/games', async (req, res) => {
             });
 
         } catch (error) {
-            console.error("Error fetching games from IGDB", error);
+            console.error("There was an error fetching the list of games", error);
             res.redirect("landing.ejs");
         }
 
     } catch (error) {
-        console.error("Error fetching access token", error);
+        console.error("There was an error fetching the access token", error);
         res.redirect("landing.ejs");
     }
 });
@@ -70,7 +90,5 @@ app.get('/games', async (req, res) => {
 app.get("/games/:game", (req, res) => {
     console.log(req.params.game);
 })
-
-
 
 app.listen(port, console.log(`Listening on port ${port}`))
