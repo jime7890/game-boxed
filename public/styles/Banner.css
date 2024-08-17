@@ -1,37 +1,97 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  transition: all 0.10s ease-in;
+}
+
+:root {
+  --base-color: #f9fbfd;
+
+  --text-color: #000000;
+  --muted-text-color: #767676;
+
+  --card-background-color: #ffffff;
+  --card-hover-color: rgb(238, 238, 238);
+
+  --banner-background: #ffffff;
+  
+  --search-bar: #ffffff;
+  --border-color: #c7c7c7;
+}
+
+.darkmode {
+  --base-color: #1c1d22;
+
+  --text-color: #ffffff;
+  --muted-text-color: #cecece;
+
+  --card-background-color: #292b32;
+  --card-hover-color: #383a44;
+
+  --banner-background: #23252b;
+
+  --search-bar: #292b32;
+  --border-color: #3e414c;
 }
 
 .header {
-    position: sticky;
-    top: 0;
-    font-size: 0.875rem;
-    border-bottom-style: solid;
-    border-bottom-color: rgb(230, 230, 230);
-    background-color: white;
+  position: sticky;
+  top: 0;
+  font-size: 0.875rem;
+  box-shadow: 0 0.5px 1px 0 var(--border-color);
+  background-color: var(--banner-background);
+  color: var(--text-color);
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    margin: auto;
-    max-width: 70rem;
-    padding: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  max-width: 70rem;
+  padding: 12px;
 }
 
 .nav-link-container {
-    display: flex; 
-    gap: 2.25rem;
+  display: flex;
+  gap: 2.25rem;
 }
 
 .navigation-link {
-    text-decoration-line: none;
-    color: black;
+  text-decoration-line: none;
+  color: var(--text-color);
 }
 
-.navigation-link:hover{
-    color: rgb(100, 100, 100);
+.navigation-link:hover {
+  color: var(--muted-text-color);
 }
+
+#theme-switch {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.fa-moon, .fa-sun {
+  width: 25px;
+  font-size: 1.15rem;
+}
+
+.fa-sun {
+  color: rgb(255, 179, 0);
+}
+
+#theme-switch i:last-child {
+  display: none;
+}
+
+
+.darkmode #theme-switch i:first-child {
+  display: none;
+}
+
+.darkmode #theme-switch i:last-child {
+  display: block;
+}
+

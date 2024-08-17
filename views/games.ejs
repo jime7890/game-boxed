@@ -15,6 +15,7 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta name="description" content="Game Boxed is a database of millions of games using IGDB's API.">
+    <script type="text/javascript" src="/js/dark.js" defer></script>
     <title>Game Boxed</title>
 </head>
 
@@ -22,30 +23,53 @@
     <%- include("partials/header") %>
 
         <div class="container">
-            <div class="side-area">Filter Area</div>
+            <div class="side-area"><h4>Filter Box</h4></div>
             <div class="main-area">
-                <div>
-                    <input type="text" placeholder="Search" class="search-bar">
+                <div class="form-container">
+                    <form action="/games" method="GET" class="form">
+                        <input type="text" name="search" class="search-bar" placeholder="Search...">
+                        <button type="submit" class="submit-button">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
                 </div>
 
-                <div class="card">
-                    <img src="https://media.rawg.io/media/crop/600/400/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg"
-                        class="img">
-                    <div class="description">
-                        <h5>Grand Theft Auto V (2013)</h5>
-                        <span>Released on 2013-09-17</span>
-                    </div>
-                </div>
+                <% if(locals.games) { %>
+                    <% games.forEach((gameEntry)=> { %>
+                        <a href="/games/<%= gameEntry.slug %>" class="slug">
+                        <div class="card">
 
+                            <% if (gameEntry.cover) { %>
+                                <img loading="lazy" src="<%= gameEntry.cover.url.replace('/t_thumb/', '/t_cover_big/') %>" class="img"
+                                alt="Photo of the game <%= gameEntry.name %>">
+                            <% } else { %>
+                                <div class="unknown">
+                                    <h6>Image not found :/</h6>
+                                </div>
+                            <% } %>
+                        
 
-                <div class="card">
-                    <img src="https://media.rawg.io/media/crop/600/400/games/739/7391608c2eea1fce7519adee05364067.jpg"
-                        class="img">
-                    <div class="description">
-                        <h5>Aura Kingdom</h5>
-                        <span>Released on 2014-07-24</span>
-                    </div>
-                </div>
+                            <div class="description" t>
+                                <h4>
+                                    <%= gameEntry.name %>
+                                </h4>
+                                <span>
+                                    <%= new Date((gameEntry.first_release_date * 1000) + new Date().getTimezoneOffset()
+                                        * 60000).toLocaleDateString('en-US', { year: 'numeric' , month: 'long' ,
+                                        day: 'numeric' }) %>
+                                </span>
+                            </div>
+
+                            <div class="score">
+                                <h4>
+                                    <%= Math.floor(gameEntry.rating) %>
+                                </h4>
+                            </div>
+                        </div>
+                    </a>
+
+                        <% }) %>
+                            <% } %>
             </div>
         </div>
 

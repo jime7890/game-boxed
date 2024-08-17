@@ -1,5 +1,16 @@
+body {
+  overflow-y: scroll;
+  background-color: var(--base-color);
+}
+
 .container {
-    max-width: 70rem;
-    margin: auto;
-    padding: 0.75rem;
+  max-width: 70rem;
+  margin: auto;
+  padding: 25px 12px;
+}
+
+h4 {
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 0.875rem;
 }
