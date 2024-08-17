@@ -69,7 +69,7 @@ app.get('/games', async (req, res) => {
                 headers: {
                     'Accept-Encoding': 'gzip',
                     'Client-ID': process.env.IGDB_CLIENT_ID,
-                    'Authorization': `Bearer ${access_token}`,    
+                    'Authorization': `Bearer ${access_token}`,
                 }
             });
 
@@ -90,27 +90,8 @@ app.get('/games', async (req, res) => {
 
 // Feature: Slug Functionality
 app.get("/games/:game", async (req, res) => {
-    const access_token = await getAccessToken();
     console.log(req.params.game);
-
-    try {
-        const igdbResponse = await axios.post('https://api.igdb.com/v4/games', query, {
-            headers: {
-                'Accept-Encoding': 'gzip',
-                'Client-ID': process.env.IGDB_CLIENT_ID,
-                'Authorization': `Bearer ${access_token}`,    
-            }
-        });
-
-        res.render('games.ejs', {
-            games: igdbResponse.data,
-        });
-
-    } catch (error) {
-        console.error("There was an error executing this query", error);
-        res.redirect("landing.ejs");
-    }
-
+    res.render("details.ejs");
 })
 
 app.listen(port, console.log(`Listening on port ${port}`))
