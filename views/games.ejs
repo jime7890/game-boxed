@@ -23,7 +23,9 @@
     <%- include("partials/header") %>
 
         <div class="container">
-            <div class="side-area"><h4>Filter Box</h4></div>
+            <div class="side-area">
+                <h4>Filter Box</h4>
+            </div>
             <div class="main-area">
                 <div class="form-container">
                     <form action="/games" method="GET" class="form">
@@ -37,36 +39,37 @@
                 <% if(locals.games) { %>
                     <% games.forEach((gameEntry)=> { %>
                         <a href="/games/<%= gameEntry.slug %>" class="slug">
-                        <div class="card">
+                            <div class="card">
 
-                            <% if (gameEntry.cover) { %>
-                                <img loading="lazy" src="<%= gameEntry.cover.url.replace('/t_thumb/', '/t_cover_big/') %>" class="img"
-                                alt="Photo of the game <%= gameEntry.name %>">
-                            <% } else { %>
-                                <div class="unknown">
-                                    <h6>Image not found :/</h6>
-                                </div>
-                            <% } %>
-                        
+                                <% if (gameEntry.cover) { %>
+                                    <img loading="lazy"
+                                        src="<%= gameEntry.cover.url.replace('/t_thumb/', '/t_cover_big/') %>"
+                                        class="img" alt="Photo of the game <%= gameEntry.name %>">
+                                    <% } else { %>
+                                        <div class="unknown">
+                                            <h6>Image not found :/</h6>
+                                        </div>
+                                        <% } %>
 
-                            <div class="description" t>
-                                <h4>
-                                    <%= gameEntry.name %>
-                                </h4>
-                                <span>
-                                    <%= new Date((gameEntry.first_release_date * 1000) + new Date().getTimezoneOffset()
-                                        * 60000).toLocaleDateString('en-US', { year: 'numeric' , month: 'long' ,
-                                        day: 'numeric' }) %>
-                                </span>
+
+                                            <div class="description" t>
+                                                <h4>
+                                                    <%= gameEntry.name %>
+                                                </h4>
+                                                <span>
+                                                    <%= new Date((gameEntry.first_release_date * 1000) + new
+                                                        Date().getTimezoneOffset() * 60000).toLocaleDateString('en-US',
+                                                        { year: 'numeric' , month: 'long' , day: 'numeric' }) %>
+                                                </span>
+                                            </div>
+
+                                            <div class="score">
+                                                <h4>
+                                                    <%= Math.floor(gameEntry.rating) %>
+                                                </h4>
+                                            </div>
                             </div>
-
-                            <div class="score">
-                                <h4>
-                                    <%= Math.floor(gameEntry.rating) %>
-                                </h4>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
 
                         <% }) %>
                             <% } %>

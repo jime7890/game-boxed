@@ -5,15 +5,17 @@ body {
 .container {
   display: grid;
   grid-template-columns: 0.35fr 0.75fr;
+  grid-template-areas: "sideArea mainArea";
   gap: 1rem;
-  max-width: 56rem;
+  max-width: 900px;
   margin: auto;
   padding: 25px 12px;
 }
 
 .side-area {
   position: sticky;
-  top: 3rem;
+  grid-area: "sideArea";
+  top: 4rem;
   align-self: start;
 }
 
@@ -60,6 +62,7 @@ body {
 .main-area {
   display: flex;
   flex-direction: column;
+  grid-area: "mainArea";
   gap: 1rem;
   height: 100%;
 }
@@ -129,4 +132,19 @@ span {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .side-area{
+    display: none;
+  }
 }
