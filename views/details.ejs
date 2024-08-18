@@ -22,6 +22,7 @@
 <body>
     <%- include("partials/header") %>
 
+        <!------------------------------ Header Container ------------------------------->
         <% if(locals.games) { %>
             <div class="container">
                 <div>
@@ -52,6 +53,8 @@
 
             </div>
 
+
+            <!------------------------------ Custom Container ------------------------------->
             <div class="custom-container">
                 <div class="gap-flex">
                     <div class="card">
@@ -90,8 +93,8 @@
                 <div class="gap-flex">
                     <div class="card">
                         <div class="right-column">
+                            <h4>Behind the Game</h4>
                             <% if(locals.games.involved_companies.length > 1) { %>
-                                <h4>Behind the Game</h4>
                                 <div>
                                     <span class="muted">Developers: </span>
     
@@ -123,9 +126,14 @@
 
                     <div class="card">
                         <div class="right-column">
+                            <h4>Age Ratings</h4>
                             <div>
                                <% if(locals.games.age_ratings) { %>
                                    <%= console.log(games.age_ratings) %>
+
+                                   <% games.age_ratings.forEach((rating) => { %>
+                                    <span><%= rating.category %></span>
+                                   <% }) %>
                                <% } %>
                             </div>
  

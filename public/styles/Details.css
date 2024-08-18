@@ -64,7 +64,7 @@ span {
   gap: 1rem;
   max-width: 900px;
   margin: auto;
-  padding: 25px 12px;
+  padding: 12px 12px;
   grid-template-columns: 1.75fr 1fr;
 }
 
