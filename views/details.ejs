@@ -43,14 +43,12 @@
                     </div>
 
                     <div>
-                        <h6 class="description">
+                        <h6 class="description muted">
                             <%= games.summary %>
                         </h6>
                     </div>
 
                 </div>
-
-
             </div>
 
 
@@ -94,32 +92,23 @@
                     <div class="card">
                         <div class="right-column">
                             <h4>Behind the Game</h4>
-                            <% if(locals.games.involved_companies.length > 1) { %>
-                                <div>
-                                    <span class="muted">Developers: </span>
-    
-                                   <% games.involved_companies.forEach((company) => { %>
-                                        <a href="<%= company.company.url %>" class="company"><span><%= company.company.name %>, </span></a>
-                                  <%  }) %>
-                                </div>
-    
-                           <% } else if(locals.games.involved_companies.length = 1) { %>
-    
-                                <div>
-                                    <span class="muted">Developers: </span>
-    
-                                   <% games.involved_companies.forEach((company) => { %>
-                                        <a href="<%= company.company.url %>" class="company"><span><%= company.company.name %> </span></a>
-                                  <%  }) %>
-                                </div>
-    
-                           <% } else { %>
-                              <span>No companies were found</span>
-                           <% } %>
 
-                           <div>
+                            <% if (locals.games.involved_companies && locals.games.involved_companies.length > 0) { %>
+                                <div>
+                                    <span class="muted">Developers: </span>
+                                    <% locals.games.involved_companies.forEach((company, index, array) => { %>
+                                        <a href="<%= company.company.url %>" class="company">
+                                            <span><%= company.company.name %><%= index === array.length - 1 ? '' : ',' %></span>
+                                        </a>
+                                    <% }) %>
+                                </div>
+                            <% } else { %>
+                                <span>No companies were found</span>
+                            <% } %>
+        
+                           <!-- <div>
                             <span class="muted">Publishers: </span>
-                           </div>
+                           </div> -->
                         </div>
                     </div>
 

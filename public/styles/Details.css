@@ -2,11 +2,32 @@ body {
   background-color: var(--base-color);
 }
 
+h4 {
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 0.875rem;
+}
+
+span {
+  margin: 0;
+  padding: 0;
+  color: var(--text-color);
+  font-size: 0.813rem;
+}
+
+.muted {
+  color: var(--muted-text-color);
+  font-weight: 400;
+}
+
+.container, .custom-container {
+  max-width: 915px;
+}
+
 .container {
   display: grid;
   grid-template-columns: 0.5fr auto;
   gap: 1rem;
-  max-width: 900px;
   margin: auto;
   padding: 25px 12px;
 }
@@ -21,7 +42,6 @@ body {
 
 .game-heading {
   font-weight: 500;
-  color: var(--text-color);
 }
 
 .title {
@@ -30,13 +50,10 @@ body {
 
 .release-date {
   font-size: 0.813rem;
-  font-weight: 375;
-  color: var(--text-color);
+  font-weight: 400;
 }
 
 .description {
-  font-weight: 400;
-  color: var(--muted-text-color);
   font-size: 0.875rem;
 }
 
@@ -46,23 +63,9 @@ body {
   border-radius: 4px;
 }
 
-h4 {
-  font-weight: 600;
-  color: var(--text-color);
-  font-size: 0.875rem;
-}
-
-span {
-  margin: 0;
-  padding: 0;
-  color: var(--text-color);
-  font-size: 0.813rem;
-}
-
 .custom-container {
   display: grid;
   gap: 1rem;
-  max-width: 900px;
   margin: auto;
   padding: 12px 12px;
   grid-template-columns: 1.75fr 1fr;
@@ -96,7 +99,6 @@ span {
   display: inline-flex;
   gap: 1rem;
   text-decoration: none;
-  color: var(--text-color);
   background-color: var(--card-hover-color);
   padding: 0.25rem;
   margin: 0px 5px 5px 0px;
@@ -106,11 +108,6 @@ span {
 .genre:hover,
 .platform:hover {
   background-color: var(--base-color);
-}
-
-.muted {
-  color: var(--muted-text-color);
-  font-weight: 400;
 }
 
 .company {

@@ -24,7 +24,9 @@
 
         <div class="container">
             <div class="side-area">
-                <h4>Filter Box</h4>
+                <div class="card side-card">
+                    <h4>Filter Box</h4>
+                </div>
             </div>
             <div class="main-area">
                 <div class="form-container">
@@ -39,7 +41,7 @@
                 <% if(locals.games) { %>
                     <% games.forEach((gameEntry)=> { %>
                         <a href="/games/<%= gameEntry.slug %>?id=<%= gameEntry.id %>" class="slug">
-                            <div class="card">
+                            <div class="card main-card">
 
                                 <% if (gameEntry.cover) { %>
                                     <img loading="lazy"
@@ -47,7 +49,7 @@
                                         class="img" alt="Photo of the game <%= gameEntry.name %>">
                                     <% } else { %>
                                         <div class="unknown">
-                                            <h6>Image not found :/</h6>
+                                            <h6>Image not found</h6>
                                         </div>
                                         <% } %>
 

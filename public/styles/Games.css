@@ -7,7 +7,7 @@ body {
   grid-template-columns: 0.35fr 0.75fr;
   grid-template-areas: "sideArea mainArea";
   gap: 1rem;
-  max-width: 900px;
+  max-width: 915px;
   margin: auto;
   padding: 25px 12px;
 }
@@ -79,7 +79,7 @@ body {
     rgba(32, 35, 40, 0.13) 0px 0px 1px 1px;
 }
 
-.card:hover {
+.main-card:hover {
   background-color: var(--card-hover-color);
   cursor: pointer;
 }
@@ -102,7 +102,7 @@ body {
   align-items: center;
   text-align: center;
   color: var(--text-color);
-  background-color: rgb(212, 212, 212);
+  background-color: var(--border-color);
 }
 
 .description {
@@ -144,7 +144,7 @@ span {
     display: none;
   }
 
-  .side-area{
+  .side-area {
     display: none;
   }
 }

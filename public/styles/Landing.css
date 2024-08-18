@@ -14,3 +14,14 @@ h4 {
   color: var(--text-color);
   font-size: 0.875rem;
 }
+
+h6 {
+  font-weight: 300;
+  color: var(--text-color);
+  font-size: 0.813rem;
+}
+
+span {
+  font-size: 0.75rem;
+  color: var(--muted-text-color);
+}
