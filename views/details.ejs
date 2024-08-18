@@ -1,24 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/styles/Banner.css" />
-        <link rel="stylesheet" href="/styles/Games.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-            rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <meta name="description" content="Game Boxed is a database of millions of games using IGDB's API.">
-        <script type="text/javascript" src="/js/dark.js" defer></script>
-        <title>Game Boxed</title>
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/Banner.css" />
+    <link rel="stylesheet" href="/styles/Details.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="description" content="Game Boxed is a database of millions of games using IGDB's API.">
+    <script type="text/javascript" src="/js/dark.js" defer></script>
+    <title>Game Boxed</title>
+</head>
+
 <body>
     <%- include("partials/header") %>
+
+        <% if(locals.games) { %>
+            <div class="container">
+                <div>
+                    <img src="<%= games.cover.url.replace('/t_thumb/', '/t_1080p/') %>" class="img"
+                        alt="Photo of the game <%= games.name %>">
+                </div>
+
+                <div class="game-description">
+                    <div class="game-heading">
+                        <h4 class="title">
+                            <%= games.name %>
+                        </h4>
+                        <span class="release-date">
+                            <%= new Date((games.first_release_date * 1000) + new Date().getTimezoneOffset() *
+                                60000).toLocaleDateString('en-US', { year: 'numeric' , month: 'long' , day: 'numeric' })
+                                %>
+                        </span>
+                    </div>
+
+                    <div>
+                        <h6 class="description">
+                            <%= games.summary %>
+                        </h6>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="custom-container">
+                <div class="gap-flex">
+                    <div class="card">
+                        <div class="genre-platform">
+                            <h4>Game Information</h4>
+                            <div>
+                                <% if(locals.games.genres) { %>
+                                    <span class="muted">Popular Tags:</span>
+                                    <% games.genres.forEach((genre)=> { %>
+                                        <a href="" class="genre">
+                                            <span>
+                                                <%= genre.name %>
+                                            </span>
+                                        </a>
+                                        <% }) %>
+                                            <% } %>
+                            </div>
+
+                            <div>
+                                <% if(locals.games.platforms) { %>
+                                    <span class="muted">Playable On:</span>
+                                    <% games.platforms.forEach((platform)=> { %>
+                                        <a href="" class="platform">
+                                            <span>
+                                                <%= platform.name %>
+                                            </span>
+                                        </a>
+                                        <% }) %>
+                                            <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="gap-flex">
+                    <div class="card">
+                        <div class="right-column">
+                            <% if(locals.games.involved_companies.length > 1) { %>
+                                <h4>Behind the Game</h4>
+                                <div>
+                                    <span class="muted">Developers: </span>
     
+                                   <% games.involved_companies.forEach((company) => { %>
+                                        <a href="<%= company.company.url %>" class="company"><span><%= company.company.name %>, </span></a>
+                                  <%  }) %>
+                                </div>
+    
+                           <% } else if(locals.games.involved_companies.length = 1) { %>
+    
+                                <div>
+                                    <span class="muted">Developers: </span>
+    
+                                   <% games.involved_companies.forEach((company) => { %>
+                                        <a href="<%= company.company.url %>" class="company"><span><%= company.company.name %> </span></a>
+                                  <%  }) %>
+                                </div>
+    
+                           <% } else { %>
+                              <span>No companies were found</span>
+                           <% } %>
+
+                           <div>
+                            <span class="muted">Publishers: </span>
+                           </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card">
+                        <div class="right-column">
+                            <div>
+                               <% if(locals.games.age_ratings) { %>
+                                   <%= console.log(games.age_ratings) %>
+                               <% } %>
+                            </div>
+ 
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <% } %>
 </body>
+
 </html>

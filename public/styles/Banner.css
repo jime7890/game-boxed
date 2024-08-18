@@ -3,20 +3,20 @@
   padding: 0;
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
-  transition: all 0.2s ease, color 0.2s ease;
+  /* transition: all 0.2s ease, color 0.2s ease; */
 }
 
 :root {
   --base-color: #f9fbfd;
 
   --text-color: #000000;
-  --muted-text-color: #767676;
+  --muted-text-color: #606060;
 
   --card-background-color: #ffffff;
   --card-hover-color: rgb(238, 238, 238);
 
   --banner-background: #ffffff;
-  
+
   --search-bar: #ffffff;
   --border-color: #c7c7c7;
 }
@@ -33,7 +33,7 @@
   --banner-background: #23252b;
 
   --search-bar: #292b32;
-  --border-color: #3e414c;
+  --border-color: rgb(62, 65, 76);
 }
 
 .header {
@@ -74,7 +74,8 @@
   height: 25px;
 }
 
-.fa-moon, .fa-sun {
+.fa-moon,
+.fa-sun {
   width: 45px;
   height: auto;
   font-size: 1.15rem;
@@ -88,7 +89,6 @@
   display: none;
 }
 
-
 .darkmode #theme-switch i:first-child {
   display: none;
 }
@@ -97,3 +97,8 @@
   display: block;
 }
 
+@media only screen and (max-width: 768px) {
+  .logo {
+    display: none;
+  }
+}

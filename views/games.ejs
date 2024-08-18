@@ -38,7 +38,7 @@
 
                 <% if(locals.games) { %>
                     <% games.forEach((gameEntry)=> { %>
-                        <a href="/games/<%= gameEntry.slug %>" class="slug">
+                        <a href="/games/<%= gameEntry.slug %>?id=<%= gameEntry.id %>" class="slug">
                             <div class="card">
 
                                 <% if (gameEntry.cover) { %>

@@ -90,8 +90,33 @@ app.get('/games', async (req, res) => {
 
 // Feature: Slug Functionality
 app.get("/games/:game", async (req, res) => {
-    console.log(req.params.game);
-    res.render("details.ejs");
+    try {
+        const access_token = await getAccessToken();
+
+        try {
+
+            const igdbResponse = await axios.post('https://api.igdb.com/v4/games', `fields name, summary, cover.url, first_release_date, genres.*, platforms.*, involved_companies.company.*, age_ratings.*; where id=${req.query.id};`, {
+                headers: {
+                    'Accept-Encoding': 'gzip',
+                    'Client-ID': process.env.IGDB_CLIENT_ID,
+                    'Authorization': `Bearer ${access_token}`,
+                }
+            });
+
+            res.render("details.ejs", {
+                games: igdbResponse.data[0]
+            })
+
+        } catch (error) {
+            console.log("There was an error fetching the games", error);
+            res.redirect("landing.ejs");
+        }
+
+    } catch (error) {
+        console.error("There was an error executing this fetch request", error);
+        res.redirect("lannding.ejs");
+    }
+
 })
 
 app.listen(port, console.log(`Listening on port ${port}`))
