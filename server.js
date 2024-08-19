@@ -93,9 +93,11 @@ app.get("/games/:game", async (req, res) => {
     try {
         const access_token = await getAccessToken();
 
+        console.log(access_token);
+
         try {
 
-            const igdbResponse = await axios.post('https://api.igdb.com/v4/games', `fields name, summary, cover.url, first_release_date, genres.*, platforms.*, involved_companies.company.*, age_ratings.rating, age_ratings.category; where id=${req.query.id};`, {
+            const igdbResponse = await axios.post('https://api.igdb.com/v4/games', `fields name, storyline, summary, cover.url, first_release_date, genres.*, platforms.*, involved_companies.company.*, age_ratings.rating, age_ratings.category, screenshots.*, videos.*, language_supports.language.name, game_modes.name; where id=${req.query.id};`, {
                 headers: {
                     'Accept-Encoding': 'gzip',
                     'Client-ID': process.env.IGDB_CLIENT_ID,

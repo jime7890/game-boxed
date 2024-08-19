@@ -15,6 +15,9 @@
   --card-background-color: #ffffff;
   --card-hover-color: rgb(238, 238, 238);
 
+  --link-color: rgb(238, 238, 238);
+  --link-hover-color: rgb(227, 227, 227);
+
   --banner-background: #ffffff;
 
   --search-bar: #ffffff;
@@ -30,6 +33,9 @@
   --card-background-color: #292b32;
   --card-hover-color: #383a44;
 
+  --link-color: #383a44;
+  --link-hover-color: #34363f;
+
   --banner-background: #23252b;
 
   --search-bar: #292b32;
@@ -38,6 +44,7 @@
 
 .header {
   position: sticky;
+  z-index: 999;
   top: 0;
   font-size: 0.875rem;
   box-shadow: 0 0.5px 1px 0 var(--border-color);

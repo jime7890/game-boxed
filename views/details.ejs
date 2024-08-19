@@ -54,15 +54,101 @@
 
             <!------------------------------ Custom Container ------------------------------->
             <div class="custom-container">
-                <div class="gap-flex">
+                <div class="card-gap">
+
+                    <% if(locals.games.storyline) { %>
+                        <div class="card">
+                            <div class="div-spacing">
+                                <h4>Story</h4>
+                                <span class="muted">
+                                    <%= games.storyline %>
+                                </span>
+                            </div>
+                        </div>
+                        <% } %>
+
+
+                            <!-- Images -->
+                            <div class="card">
+                                <div class="div-spacing">
+                                    <h4>Media</h4>
+                                    <% if(locals.games.videos) { %>
+                                        <div class="video-container">
+                                            <iframe class="video"
+                                                src="https://www.youtube.com/embed/<%= games.videos[0].video_id %>"
+                                                frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                        <% } %>
+
+
+                                            <div class="image-container">
+                                                <% if(locals.games.screenshots) { %>
+                                                    <% games.screenshots.forEach((image)=> { %>
+                                                        <img loading="lazy" class="screenshot"
+                                                            src="<%= image.url.replace('/t_thumb/', '/t_1080p/') %>">
+                                                        <% }) %>
+
+                                                            <% } else { %>
+                                                                <% console.log("No screenshots were found"); %>
+                                                                    <% } %>
+                                            </div>
+                                </div>
+                            </div>
+
+
+                </div>
+
+
+                <div class="card-gap">
                     <div class="card">
-                        <div class="genre-platform">
+                        <div class="right-column">
+                            <h4>Behind the Game</h4>
+
+                            <% if (locals.games.involved_companies && locals.games.involved_companies.length> 0) { %>
+                                <div>
+                                    <span class="muted">Developers: </span>
+                                    <% locals.games.involved_companies.forEach((company, index, array)=> { %>
+                                        <a href="<%= company.company.url %>" class="company">
+                                            <span>
+                                                <%= company.company.name %>
+                                                    <%= index===array.length - 1 ? '' : ',' %>
+                                            </span>
+                                        </a>
+                                        <% }) %>
+                                </div>
+                                <% } else { %>
+                                    <span>No companies were found</span>
+                                    <% } %>
+
+                                        <!-- <div>
+                            <span class="muted">Publishers: </span>
+                           </div> -->
+                        </div>
+                    </div>
+
+
+                    <div class="card">
+                        <div class="right-column">
                             <h4>Game Information</h4>
+
+                            <div>
+                                <% if(locals.games.game_modes) { %>
+                                    <span class="muted">Game Modes:</span>
+                                    <% games.game_modes.forEach((mode)=> { %>
+                                        <a href="" class="game-info">
+                                            <span>
+                                                <%= mode.name %>
+                                            </span>
+                                        </a>
+                                        <% }) %>
+                                            <% } %>
+                            </div>
+
                             <div>
                                 <% if(locals.games.genres) { %>
                                     <span class="muted">Popular Tags:</span>
                                     <% games.genres.forEach((genre)=> { %>
-                                        <a href="" class="genre">
+                                        <a href="" class="game-info">
                                             <span>
                                                 <%= genre.name %>
                                             </span>
@@ -75,7 +161,7 @@
                                 <% if(locals.games.platforms) { %>
                                     <span class="muted">Playable On:</span>
                                     <% games.platforms.forEach((platform)=> { %>
-                                        <a href="" class="platform">
+                                        <a href="" class="game-info">
                                             <span>
                                                 <%= platform.name %>
                                             </span>
@@ -85,55 +171,39 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-
-                <div class="gap-flex">
-                    <div class="card">
-                        <div class="right-column">
-                            <h4>Behind the Game</h4>
-
-                            <% if (locals.games.involved_companies && locals.games.involved_companies.length > 0) { %>
-                                <div>
-                                    <span class="muted">Developers: </span>
-                                    <% locals.games.involved_companies.forEach((company, index, array) => { %>
-                                        <a href="<%= company.company.url %>" class="company">
-                                            <span><%= company.company.name %><%= index === array.length - 1 ? '' : ',' %></span>
-                                        </a>
-                                    <% }) %>
-                                </div>
-                            <% } else { %>
-                                <span>No companies were found</span>
-                            <% } %>
-        
-                           <!-- <div>
-                            <span class="muted">Publishers: </span>
-                           </div> -->
-                        </div>
-                    </div>
 
 
                     <div class="card">
                         <div class="right-column">
                             <h4>Age Ratings</h4>
                             <div>
-                               <% if(locals.games.age_ratings) { %>
-                                   <%= console.log(games.age_ratings) %>
-
-                                   <% games.age_ratings.forEach((rating) => { %>
-                                    <span><%= rating.category %></span>
-                                   <% }) %>
-                               <% } %>
+                                <% if(locals.games.age_ratings) { %>
+                                    <% games.age_ratings.forEach((rating)=> { %>
+                                        <span>
+                                            <%= rating.category %>
+                                        </span>
+                                        <% }) %>
+                                            <% } %>
                             </div>
- 
-
                         </div>
-
-
                     </div>
 
-                </div>
 
+                    <div class="card">
+                        <div class="right-column">
+                            <h4>Language Support</h4>
+                            <div>
+                                <% if(locals.games.language_supports) { %>
+                                    <%= console.log(games.language_supports); %>
+                                        <% } %>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
             </div>
 
             <% } %>
