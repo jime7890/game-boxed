@@ -56,31 +56,24 @@ app.get('/games', async (req, res) => {
     let query = '';
 
     if (searchQuery) {
-        query = `search "${searchQuery}"; fields name, rating, cover.url, slug, first_release_date, summary; limit 20;`;
+        query = `search "${searchQuery}"; fields name, rating, cover.url, slug, first_release_date;`;
     } else {
-        query = `fields name, rating, cover.url, first_release_date, slug, summary; sort rating desc; where rating <= 100; limit 25;`;
+        query = `fields name, rating, cover.url, slug, first_release_date; where rating >= 85; limit 20;`;
     }
 
     try {
         const access_token = await getAccessToken();
+        const igdbResponse = await axios.post('https://api.igdb.com/v4/games', query, {
+            headers: {
+                'Accept-Encoding': 'gzip',
+                'Client-ID': process.env.IGDB_CLIENT_ID,
+                'Authorization': `Bearer ${access_token}`,
+            }
+        });
 
-        try {
-            const igdbResponse = await axios.post('https://api.igdb.com/v4/games', query, {
-                headers: {
-                    'Accept-Encoding': 'gzip',
-                    'Client-ID': process.env.IGDB_CLIENT_ID,
-                    'Authorization': `Bearer ${access_token}`,
-                }
-            });
-
-            res.render('games.ejs', {
-                games: igdbResponse.data,
-            });
-
-        } catch (error) {
-            console.error("There was an error fetching the list of games", error);
-            res.redirect("landing.ejs");
-        }
+        res.render('games.ejs', {
+            games: igdbResponse.data,
+        });
 
     } catch (error) {
         console.error("There was an error fetching the access token", error);
@@ -88,29 +81,20 @@ app.get('/games', async (req, res) => {
     }
 });
 
-// Feature: Slug Functionality
 app.get("/games/:game", async (req, res) => {
     try {
         const access_token = await getAccessToken();
+        const igdbResponse = await axios.post('https://api.igdb.com/v4/games', `fields name, storyline, summary, cover.url, first_release_date, genres.*, platforms.*, involved_companies.company.*, age_ratings.rating, age_ratings.category, screenshots.*, videos.*, language_supports.language.name, game_modes.name; where id=${req.query.id};`, {
+            headers: {
+                'Accept-Encoding': 'gzip',
+                'Client-ID': process.env.IGDB_CLIENT_ID,
+                'Authorization': `Bearer ${access_token}`,
+            }
+        });
 
-        try {
-
-            const igdbResponse = await axios.post('https://api.igdb.com/v4/games', `fields name, storyline, summary, cover.url, first_release_date, genres.*, platforms.*, involved_companies.company.*, age_ratings.rating, age_ratings.category, screenshots.*, videos.*, language_supports.language.name, game_modes.name; where id=${req.query.id};`, {
-                headers: {
-                    'Accept-Encoding': 'gzip',
-                    'Client-ID': process.env.IGDB_CLIENT_ID,
-                    'Authorization': `Bearer ${access_token}`,
-                }
-            });
-
-            res.render("details.ejs", {
-                games: igdbResponse.data[0]
-            })
-
-        } catch (error) {
-            console.log("There was an error fetching the games", error);
-            res.redirect("landing.ejs");
-        }
+        res.render("details.ejs", {
+            games: igdbResponse.data[0]
+        })
 
     } catch (error) {
         console.error("There was an error executing this fetch request", error);

@@ -21,15 +21,10 @@
 
 <body>
     <%- include("partials/header") %>
-
         <div class="container">
-            
             <div class="side-area">
                 <div class="card side-card">
                     <h4>Filter Box</h4>
-                    <!-- <form action="/filter" method="POST">
-                        <input type="text" name="YEAH">
-                    </form> -->
                 </div>
             </div>
 
@@ -49,11 +44,17 @@
                             <div class="card main-card">
 
                                 <% if (gameEntry.cover) { %>
-                                    <img loading="lazy"
+                                    <div class="img-container">
+                                        <img 
+                                        decoding="async"
+                                        loading="lazy"
                                         src="<%= gameEntry.cover.url.replace('/t_thumb/', '/t_cover_big/') %>"
-                                        class="img" alt="Photo of the game <%= gameEntry.name %>">
+                                        srcset="<%= gameEntry.cover.url.replace('/t_thumb/', '/t_cover_big/').replace('jpg', 'webp') %>"
+                                        alt="Cover art of <%= gameEntry.name %>"
+                                        class="img">
+                                    </div>
                                     <% } else { %>
-                                        <div class="unknown">
+                                        <div class="img-container unknown">
                                             <h6>Image not found</h6>
                                         </div>
                                         <% } %>

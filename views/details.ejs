@@ -27,8 +27,10 @@
         <% if(locals.games) { %>
             <div class="container">
                 <div>
-                    <img src="<%= games.cover.url.replace('/t_thumb/', '/t_1080p/') %>" class="img"
-                        alt="Photo of the game <%= games.name %>">
+                    <img 
+                       src="<%= games.cover.url.replace('/t_thumb/', '/t_1080p/') %>"
+                       class="img"
+                       alt="Cover art of the game <%= games.name %>">
                 </div>
 
                 <div class="game-description">
@@ -53,7 +55,6 @@
                 </div>
             </div>
 
-
             <!------------------------------ Custom Container ------------------------------->
             <div class="custom-container">
                 <div class="card-gap">
@@ -77,6 +78,7 @@
                                         <div class="video-container">
                                             <iframe class="video"
                                                 src="https://www.youtube-nocookie.com/embed/<%= games.videos[0].video_id %>"
+                                                title="<%= games.videos[0].name %>"
                                                 frameborder="0" allowfullscreen></iframe>
                                         </div>
                                         <% } %>
@@ -84,8 +86,12 @@
                                             <div class="image-container">
                                                 <% if(locals.games.screenshots) { %>
                                                     <% games.screenshots.forEach((image)=> { %>
-                                                        <img loading="lazy" class="screenshot"
-                                                            src="<%= image.url.replace('/t_thumb/', '/t_1080p/') %>">
+                                                        <img class="screenshot" 
+                                                            decoding="async"
+                                                            loading="lazy"
+                                                            alt="Screenshot of gameplay in <%= image.name %>"
+                                                            src="<%= image.url.replace('/t_thumb/', '/t_720p/') %>"
+                                                            srcset="<%= image.url.replace('/t_thumb/', '/t_1080p/').replace('jpg', 'webp') %>">
                                                         <% }) %>
 
                                                             <% } else { %>
@@ -116,13 +122,8 @@
                                 <% } else { %>
                                     <span>No companies were found</span>
                                     <% } %>
-
-                                        <!-- <div>
-                            <span class="muted">Publishers: </span>
-                           </div> -->
                         </div>
                     </div>
-
 
                     <div class="card">
                         <div class="right-column">
@@ -194,7 +195,6 @@
                     </div>
                 </div>
             </div>
-
             <% } %>
 </body>
 
