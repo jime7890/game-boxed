@@ -39,7 +39,6 @@ body {
   width: 100%;
 }
 
-
 #range {
   -webkit-appearance: none;
   appearance: none;
@@ -52,7 +51,7 @@ body {
   outline: none;
 }
 
-/* Chromium Browsers - Google Chrome, Edge,  */
+/* Chromium Browsers (Google Chrome, Edge...), Apple - Safari */
 #range::-webkit-slider-runnable-track {
   background: var(--range-slider-color);
   border-radius: 4px;
@@ -96,6 +95,12 @@ body {
 
 .form-button:hover {
   background-color: var(--card-hover-color);
+}
+
+
+.link {
+  text-decoration: none;
+  text-align: center;
 }
 
 .search-form {

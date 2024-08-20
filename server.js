@@ -95,6 +95,8 @@ app.get('/games', async (req, res) => {
 
         res.render('games.ejs', {
             range: range,
+            theme: theme,
+            genre: genre,
             games: igdbResponse.data,
         });
 
