@@ -104,6 +104,9 @@ app.get("/games/:slug/:game", async (req, res) => {
 })
 
 app.post("/filter", async (req, res) => {
+    console.log(req.body);
+
+
     let query = `fields name, rating, cover.url, slug, first_release_date; where rating = ${req.body.range}; limit 25;`;
     try {
         const access_token = await getAccessToken();
