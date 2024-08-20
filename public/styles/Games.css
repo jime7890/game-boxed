@@ -32,19 +32,17 @@ body {
   align-items: center;
 }
 
+.form-button {
+  cursor: pointer;
+  border-style: solid;
+  border-width: 0.25px;
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+.form-button:hover {
+  background-color: var(--card-hover-color);
+}
 
 .search-form {
   background-color: var(--search-bar);
@@ -60,13 +58,13 @@ body {
 
 .search-bar {
   background-color: var(--search-bar);
+  color: var(--text-color);
   border-style: none;
   width: 250px;
 }
 
 .search-bar:focus {
   outline: none;
-  color: var(--text-color);
 }
 
 .search-bar::placeholder {

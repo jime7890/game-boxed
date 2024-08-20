@@ -98,13 +98,32 @@ app.get("/games/:slug/:game", async (req, res) => {
 
     } catch (error) {
         console.error("There was an error executing this fetch request", error);
-        res.redirect("landing.ejs");
+        res.redirect("games.ejs");
     }
 
 })
 
-app.post("/filter", (req, res) => {
-    console.log(req.body);
+app.post("/filter", async (req, res) => {
+    let query = `fields name, rating, cover.url, slug, first_release_date; where rating = ${req.body.range}; limit 25;`;
+    try {
+        const access_token = await getAccessToken();
+        const igdbResponse = await axios.post('https://api.igdb.com/v4/games', query, {
+            headers: {
+                'Accept-Encoding': 'gzip',
+                'Client-ID': process.env.IGDB_CLIENT_ID,
+                'Authorization': `Bearer ${access_token}`,
+            }
+        });
+
+        res.render('games.ejs', {
+            range: req.body.range,
+            games: igdbResponse.data,
+        });
+
+    } catch (error) {
+        console.error("There was an error executing the filter request");
+        res.redirect("games.ejs");
+    }
 })
 
 app.listen(port, console.log(`Listening on port ${port}`))

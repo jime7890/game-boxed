@@ -29,12 +29,22 @@
                             <span>Rating</span>
                             <span id="number">50</span>
                         </label>
-                        <input type="range" id="range" name="range" value="50">
+
+                        <% if(locals.range) { %>
+                            <input type="range" id="range" name="range" value="<%= range %>">
+                       <% } else { %>
+                            <input type="range" id="range" name="range" value="50">
+                        <% } %>
                     </div>
 
                     <div class="card side-card">
                         <span>Filter by Themes</span>
                     </div>
+
+                    <button type="submit" class="card form-button">
+                        Apply Filters
+                    </button>
+
                 </form>
 
             </div>
@@ -99,10 +109,10 @@
             const slider = document.getElementById("range");
             const output = document.getElementById("number");
 
-            output.innerHTML = "≥ " + slider.value;
+            output.innerHTML = "= " + slider.value;
 
             slider.oninput = function() {
-                output.innerHTML = "≥ " + this.value;
+                output.innerHTML = "= " + this.value;
             }
         </script>
 </body>
