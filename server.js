@@ -53,10 +53,32 @@ const getAccessToken = async () => {
 
 app.get('/games', async (req, res) => {
     const searchQuery = req.query.search;
+    const { range, theme, genre } = req.query;
+
     let query = '';
 
     if (searchQuery) {
         query = `search "${searchQuery}"; fields name, rating, cover.url, slug, first_release_date;`;
+    } else if(range || theme || genre) {
+        let conditions = [];
+
+        if(range) {
+            conditions.push(`rating = ${range}`)
+        } 
+
+        if(theme) {
+            conditions.push(`themes = ${theme}`)
+        }
+
+        if(genre) {
+            conditions.push(`genres = ${genre}`)
+        }
+
+        let baseQuery = "fields name, rating, cover.url, slug, first_release_date, themes, genres;"
+        let whereCondition = conditions.length > 0 ? `where ${conditions.join(' & ')};` : '';
+        let limit = "limit 20;"
+
+        query = `${baseQuery} ${whereCondition} ${limit}`
     } else {
         query = `fields name, rating, cover.url, slug, first_release_date; where rating >= 85; limit 20;`;
     }
@@ -72,6 +94,7 @@ app.get('/games', async (req, res) => {
         });
 
         res.render('games.ejs', {
+            range: range,
             games: igdbResponse.data,
         });
 
@@ -101,32 +124,6 @@ app.get("/games/:slug/:game", async (req, res) => {
         res.redirect("games.ejs");
     }
 
-})
-
-app.post("/filter", async (req, res) => {
-    console.log(req.body);
-
-
-    let query = `fields name, rating, cover.url, slug, first_release_date; where rating = ${req.body.range}; limit 25;`;
-    try {
-        const access_token = await getAccessToken();
-        const igdbResponse = await axios.post('https://api.igdb.com/v4/games', query, {
-            headers: {
-                'Accept-Encoding': 'gzip',
-                'Client-ID': process.env.IGDB_CLIENT_ID,
-                'Authorization': `Bearer ${access_token}`,
-            }
-        });
-
-        res.render('games.ejs', {
-            range: req.body.range,
-            games: igdbResponse.data,
-        });
-
-    } catch (error) {
-        console.error("There was an error executing the filter request");
-        res.redirect("games.ejs");
-    }
 })
 
 app.listen(port, console.log(`Listening on port ${port}`))

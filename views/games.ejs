@@ -23,7 +23,7 @@
     <%- include("partials/header") %>
         <div class="container">
             <div class="side-area">
-                <form action="/filter" method="post" class="filter-container">
+                <form method="GET" class="filter-container">
                     <div class="card side-card">
                         <label for="range" class="muted">
                             <span>Rating</span>
@@ -39,60 +39,58 @@
 
                     <select class="card side-card select-dropdown" name="theme">
                         <option disabled="disabled" selected="true">Filter by Themes</option>
-                        <option value="Action">Action</option>
-                        <option value="Fantasy">Fantasy</option>
-                        <option value="Science Fiction">Science Fiction</option>
-                        <option value="Horror">Horror</option>
-                        <option value="Thriller">Thriller</option>
-                        <option value="Survival">Survival</option>
-                        <option value="Historical">Historical</option>
-                        <option value="Stealth">Stealth</option>
-                        <option value="Comedy">Comedy</option>
-                        <option value="Business">Business</option>
-                        <option value="Drama">Drama</option>
-                        <option value="Non-fiction">Non-fiction</option>
-                        <option value="Sandbox">Sandbox</option>
-                        <option value="Educational">Educational</option>
-                        <option value="Kids">Kids</option>
-                        <option value="Open world">Open world</option>
-                        <option value="Warfare">Warfare</option>
-                        <option value="Party">Party</option>
-                        <option value="4X (Explore, expand, exploit, and exterminate)">4X (Explore, expand, exploit, and exterminate)</option>
-                        <option value="Erotic">Erotic</option>
-                        <option value="Mystery">Mystery</option>
-                        <option value="Romance">Romance</option>
+                        <option value="1">Action</option>
+                        <option value="17">Fantasy</option>
+                        <option value="18">Science Fiction</option>
+                        <option value="19">Horror</option>
+                        <option value="20">Thriller</option>
+                        <option value="21">Survival</option>
+                        <option value="22">Historical</option>
+                        <option value="23">Stealth</option>
+                        <option value="27">Comedy</option>
+                        <option value="28">Business</option>
+                        <option value="31">Drama</option>
+                        <option value="32">Non-fiction</option>
+                        <option value="33">Sandbox</option>
+                        <option value="34">Educational</option>
+                        <option value="35">Kids</option>
+                        <option value="38">Open world</option>
+                        <option value="39">Warfare</option>
+                        <option value="40">Party</option>
+                        <option value="41">4X (Explore, expand, exploit, and exterminate)</option>
+                        <option value="42">Erotic</option>
+                        <option value="43">Mystery</option>
+                        <option value="44">Romance</option>
                     </select>
-
 
                     <select class="card side-card select-dropdown" name="genre">
                         <option disabled="disabled" selected="true">Filter by Genres</option>
-                        <option value="Point-and-click">Point-and-click</option>
-                        <option value="Fighting">Fighting</option>
-                        <option value="Shooter">Shooter</option>
-                        <option value="Music">Music</option>
-                        <option value="Platform">Platform</option>
-                        <option value="Puzzle">Puzzle</option>
-                        <option value="Racing">Racing</option>
-                        <option value="Real Time Strategy (RTS)">Real Time Strategy (RTS)</option>
-                        <option value="Role-playing (RPG)">Role-playing (RPG)</option>
-                        <option value="Simulator">Simulator</option>
-                        <option value="Sport">Sport</option>
-                        <option value="Strategy">Strategy</option>
-                        <option value="Turn-based strategy (TBS)">Turn-based strategy (TBS)</option>
-                        <option value="Tactical">Tactical</option>
-                        <option value="Hack and slash/Beat 'em up">Hack and slash/Beat 'em up</option>
-                        <option value="Quiz/Trivia">Quiz/Trivia</option>
-                        <option value="Pinball">Pinball</option>
-                        <option value="Adventure">Adventure</option>
-                        <option value="Indie">Indie</option>
-                        <option value="Arcade">Arcade</option>
-                        <option value="Visual Novel">Visual Novel</option>
-                        <option value="Card & Board Game">Card & Board Game</option>
-                        <option value="MOBA">MOBA</option>
+                        <option value="2">Point-and-click</option>
+                        <option value="4">Fighting</option>
+                        <option value="5">Shooter</option>
+                        <option value="7">Music</option>
+                        <option value="8">Platform</option>
+                        <option value="9">Puzzle</option>
+                        <option value="10">Racing</option>
+                        <option value="11">Real Time Strategy (RTS)</option>
+                        <option value="12">Role-playing (RPG)</option>
+                        <option value="13">Simulator</option>
+                        <option value="14">Sport</option>
+                        <option value="15">Strategy</option>
+                        <option value="16">Turn-based strategy (TBS)</option>
+                        <option value="24">Tactical</option>
+                        <option value="25">Hack and slash/Beat 'em up</option>
+                        <option value="26">Quiz/Trivia</option>
+                        <option value="30">Pinball</option>
+                        <option value="31">Adventure</option>
+                        <option value="32">Indie</option>
+                        <option value="33">Arcade</option>
+                        <option value="34">Visual Novel</option>
+                        <option value="35">Card & Board Game</option>
+                        <option value="36">MOBA</option>
                     </select>
 
                     <button type="submit" class="card form-button">Apply Filters</button>
-
                 </form>
 
             </div>
