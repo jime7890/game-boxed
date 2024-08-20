@@ -4,7 +4,7 @@ body {
 
 .container {
   display: grid;
-  grid-template-columns: 0.35fr 0.75fr;
+  grid-template-columns: 0.30fr 0.75fr;
   grid-template-areas: "sideArea mainArea";
   gap: 1rem;
   max-width: 915px;
@@ -19,13 +19,34 @@ body {
   align-self: start;
 }
 
-.form-container {
+.filter-container {
   display: flex;
-  justify-content: left;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.side-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
 }
 
-.form {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.search-form {
   background-color: var(--search-bar);
   display: inline-flex;
   align-items: center;
@@ -59,6 +80,14 @@ body {
   border-style: none;
 }
 
+.card {
+  background-color: var(--card-background-color);
+  padding: 0.75rem;
+  border-radius: 4px;
+  box-shadow: rgba(32, 35, 40, 0.25) 0px 1px 1px,
+    rgba(32, 35, 40, 0.13) 0px 0px 1px 1px;
+}
+
 .main-area {
   display: flex;
   flex-direction: column;
@@ -67,16 +96,11 @@ body {
   height: 100%;
 }
 
-.card {
+.main-card {
   display: grid;
-  background-color: var(--card-background-color);
   grid-template-columns: auto 1fr 0.25fr;
   grid-gap: 0.75rem;
   width: 100%;
-  padding: 0.75rem;
-  border-radius: 4px;
-  box-shadow: rgba(32, 35, 40, 0.25) 0px 1px 1px,
-    rgba(32, 35, 40, 0.13) 0px 0px 1px 1px;
 }
 
 .main-card:hover {
@@ -123,20 +147,24 @@ body {
   flex-direction: column;
 }
 
-h4 {
-  font-weight: 600;
-  color: var(--text-color);
-  font-size: 0.875rem;
-}
-
 h6 {
   font-weight: 300;
   color: var(--text-color);
   font-size: 0.813rem;
 }
 
+h4 {
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 0.875rem;
+}
+
 span {
-  font-size: 0.75rem;
+  font-size: 0.813rem;
+  color: var(--text-color);
+}
+
+.muted {
   color: var(--muted-text-color);
 }
 

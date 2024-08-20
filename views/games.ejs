@@ -23,14 +23,25 @@
     <%- include("partials/header") %>
         <div class="container">
             <div class="side-area">
-                <div class="card side-card">
-                    <h4>Filter Box</h4>
-                </div>
+                <form action="/filter" method="post" class="filter-container">
+                    <div class="card side-card">
+                        <label for="range" class="muted">
+                            <span>Rating</span>
+                            <span id="number">50</span>
+                        </label>
+                        <input type="range" id="range" name="range" value="50">
+                    </div>
+
+                    <div class="card side-card">
+                        <span>Filter by Themes</span>
+                    </div>
+                </form>
+
             </div>
 
             <div class="main-area">
-                <div class="form-container">
-                    <form action="/games" method="GET" class="form">
+                <div class="search-container">
+                    <form action="/games" method="GET" class="search-form">
                         <input type="text" name="search" class="search-bar" placeholder="Search...">
                         <button type="submit" class="submit-button" aria-label="Search">
                             <i class="fa-solid fa-magnifying-glass"></i>
@@ -45,13 +56,10 @@
 
                                 <% if (gameEntry.cover) { %>
                                     <div class="img-container">
-                                        <img 
-                                        decoding="async"
-                                        loading="lazy"
-                                        src="<%= gameEntry.cover.url.replace('/t_thumb/', '/t_cover_big/') %>"
-                                        srcset="<%= gameEntry.cover.url.replace('/t_thumb/', '/t_cover_big/').replace('jpg', 'webp') %>"
-                                        alt="Cover art of <%= gameEntry.name %>"
-                                        class="img">
+                                        <img decoding="async" loading="lazy"
+                                            src="<%= gameEntry.cover.url.replace('/t_thumb/', '/t_cover_big/') %>"
+                                            srcset="<%= gameEntry.cover.url.replace('/t_thumb/', '/t_cover_big/').replace('jpg', 'webp') %>"
+                                            alt="Cover art of <%= gameEntry.name %>" class="img">
                                     </div>
                                     <% } else { %>
                                         <div class="img-container unknown">
@@ -64,7 +72,7 @@
                                                 <h4>
                                                     <%= gameEntry.name %>
                                                 </h4>
-                                                <span>
+                                                <span class="muted">
                                                     <%= new Date((gameEntry.first_release_date * 1000) + new
                                                         Date().getTimezoneOffset() * 60000).toLocaleDateString('en-US',
                                                         { year: 'numeric' , month: 'long' , day: 'numeric' }) %>
@@ -87,6 +95,16 @@
         <footer>
 
         </footer>
+        <script>
+            const slider = document.getElementById("range");
+            const output = document.getElementById("number");
+
+            output.innerHTML = "≥ " + slider.value;
+
+            slider.oninput = function() {
+                output.innerHTML = "≥ " + this.value;
+            }
+        </script>
 </body>
 
 </html>

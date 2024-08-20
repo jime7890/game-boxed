@@ -26,7 +26,7 @@ span {
 
 .container {
   display: grid;
-  grid-template-columns: 0.5fr auto;
+  grid-template-columns: 0.5fr 2fr;
   gap: 1rem;
   margin: auto;
   padding: 25px 12px;
