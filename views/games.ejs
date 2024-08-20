@@ -32,14 +32,36 @@
 
                         <% if(locals.range) { %>
                             <input type="range" id="range" name="range" value="<%= range %>">
-                       <% } else { %>
-                            <input type="range" id="range" name="range" value="50">
-                        <% } %>
+                            <% } else { %>
+                                <input type="range" id="range" name="range" value="50">
+                                <% } %>
                     </div>
 
-                    <div class="card side-card">
-                        <span>Filter by Themes</span>
-                    </div>
+                    <select class="card side-card select-dropdown" name="Filter by Themes">
+                        <option disabled="disabled" selected="true">Filter by Themes</option>
+                        <option>Action</option>
+                        <option>Fantasy</option>
+                        <option>Science Fiction</option>
+                        <option>Horror</option>
+                        <option>Thriller</option>
+                        <option>Survival</option>
+                        <option>Historical</option>
+                        <option>Stealth</option>
+                        <option>Comedy</option>
+                        <option>Business</option>
+                        <option>Drama</option>
+                        <option>Non-fiction</option>
+                        <option>Sandbox</option>
+                        <option>Educational</option>
+                        <option>Kids</option>
+                        <option>Open world</option>
+                        <option>Warfare</option>
+                        <option>Party</option>
+                        <option>4X (Explore, expand, exploit, and exterminate)</option>
+                        <option>Erotic</option>
+                        <option>Mystery</option>
+                        <option>Romance</option>
+                    </select>
 
                     <button type="submit" class="card form-button">
                         Apply Filters
@@ -111,7 +133,7 @@
 
             output.innerHTML = "= " + slider.value;
 
-            slider.oninput = function() {
+            slider.oninput = function () {
                 output.innerHTML = "= " + this.value;
             }
         </script>
