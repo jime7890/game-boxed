@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/Banner.css" />
     <link rel="stylesheet" href="/styles/Details.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/styles/lite-yt-embed.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <meta name="description" content="Game Boxed is a database of millions of games using IGDB's API.">
     <title>Game Boxed</title>
@@ -69,11 +68,8 @@
                                     <h4>Media</h4>
                                     <% if(locals.games.videos) { %>
                                         <div class="video-container">
-                                            <iframe class="video"
-                                                src="https://www.youtube-nocookie.com/embed/<%= games.videos[0].video_id %>"
-                                                title="<%= games.videos[0].name %>"
-                                                frameborder="0" allowfullscreen></iframe>
-                                        </div>
+                                                <lite-youtube class="video" videoid="<%= games.videos[0].video_id %>" playlabel="Play: <%= games.videos[0].name %>"></lite-youtube>
+                                            </div>
                                         <% } %>
                                             <!-- Screenshots -->
                                             <div class="image-container">
@@ -191,6 +187,7 @@
             <% } %>
 
             <script src="/js/dark.js" defer></script>
+            <script src="/js/lite-yt-embed.js" defer></script>
 </body>
 
 </html>
