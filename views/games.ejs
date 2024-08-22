@@ -8,14 +8,8 @@
     <link rel="stylesheet" href="/styles/Games.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <meta name="description" content="Game Boxed is a database of millions of games using IGDB's API.">
-    <script type="text/javascript" src="/js/dark.js" defer></script>
     <title>Game Boxed</title>
 </head>
 
@@ -38,56 +32,57 @@
                     </div>
 
                     <select class="card side-card select-dropdown" name="theme">
-                        <option disabled="disabled" <%= !theme ? 'selected="true"' : '' %>>Filter by Themes</option>
-                        <option value="1" <%= theme == 1 ? 'selected="true"' : '' %>>Action</option>
-                        <option value="17" <%= theme == 17 ? 'selected="true"' : '' %>>Fantasy</option>
-                        <option value="18" <%= theme == 18 ? 'selected="true"' : '' %>>Science Fiction</option>
-                        <option value="19" <%= theme == 19 ? 'selected="true"' : '' %>>Horror</option>
-                        <option value="20" <%= theme == 20 ? 'selected="true"' : '' %>>Thriller</option>
-                        <option value="21" <%= theme == 21 ? 'selected="true"' : '' %>>Survival</option>
-                        <option value="22" <%= theme == 22 ? 'selected="true"' : '' %>>Historical</option>
-                        <option value="23" <%= theme == 23 ? 'selected="true"' : '' %>>Stealth</option>
-                        <option value="27" <%= theme == 27 ? 'selected="true"' : '' %>>Comedy</option>
-                        <option value="28" <%= theme == 28 ? 'selected="true"' : '' %>>Business</option>
-                        <option value="31" <%= theme == 31 ? 'selected="true"' : '' %>>Drama</option>
-                        <option value="32" <%= theme == 32 ? 'selected="true"' : '' %>>Non-fiction</option>
-                        <option value="33" <%= theme == 33 ? 'selected="true"' : '' %>>Sandbox</option>
-                        <option value="34" <%= theme == 34 ? 'selected="true"' : '' %>>Educational</option>
-                        <option value="35" <%= theme == 35 ? 'selected="true"' : '' %>>Kids</option>
-                        <option value="38" <%= theme == 38 ? 'selected="true"' : '' %>>Open world</option>
-                        <option value="39" <%= theme == 39 ? 'selected="true"' : '' %>>Warfare</option>
-                        <option value="40" <%= theme == 40 ? 'selected="true"' : '' %>>Party</option>
-                        <option value="41" <%= theme == 41 ? 'selected="true"' : '' %>>4X (Explore, expand, exploit, and exterminate)</option>
-                        <option value="42" <%= theme == 42 ? 'selected="true"' : '' %>>Erotic</option>
-                        <option value="43" <%= theme == 43 ? 'selected="true"' : '' %>>Mystery</option>
-                        <option value="44" <%= theme == 44 ? 'selected="true"' : '' %>>Romance</option>
+                        <option disabled="disabled" <%=!theme ? 'selected="true"' : '' %>>Filter by Themes</option>
+                        <option value="1" <%=theme==1 ? 'selected="true"' : '' %>>Action</option>
+                        <option value="17" <%=theme==17 ? 'selected="true"' : '' %>>Fantasy</option>
+                        <option value="18" <%=theme==18 ? 'selected="true"' : '' %>>Science Fiction</option>
+                        <option value="19" <%=theme==19 ? 'selected="true"' : '' %>>Horror</option>
+                        <option value="20" <%=theme==20 ? 'selected="true"' : '' %>>Thriller</option>
+                        <option value="21" <%=theme==21 ? 'selected="true"' : '' %>>Survival</option>
+                        <option value="22" <%=theme==22 ? 'selected="true"' : '' %>>Historical</option>
+                        <option value="23" <%=theme==23 ? 'selected="true"' : '' %>>Stealth</option>
+                        <option value="27" <%=theme==27 ? 'selected="true"' : '' %>>Comedy</option>
+                        <option value="28" <%=theme==28 ? 'selected="true"' : '' %>>Business</option>
+                        <option value="31" <%=theme==31 ? 'selected="true"' : '' %>>Drama</option>
+                        <option value="32" <%=theme==32 ? 'selected="true"' : '' %>>Non-fiction</option>
+                        <option value="33" <%=theme==33 ? 'selected="true"' : '' %>>Sandbox</option>
+                        <option value="34" <%=theme==34 ? 'selected="true"' : '' %>>Educational</option>
+                        <option value="35" <%=theme==35 ? 'selected="true"' : '' %>>Kids</option>
+                        <option value="38" <%=theme==38 ? 'selected="true"' : '' %>>Open world</option>
+                        <option value="39" <%=theme==39 ? 'selected="true"' : '' %>>Warfare</option>
+                        <option value="40" <%=theme==40 ? 'selected="true"' : '' %>>Party</option>
+                        <option value="41" <%=theme==41 ? 'selected="true"' : '' %>>4X (Explore, expand, exploit, and
+                            exterminate)</option>
+                        <option value="42" <%=theme==42 ? 'selected="true"' : '' %>>Erotic</option>
+                        <option value="43" <%=theme==43 ? 'selected="true"' : '' %>>Mystery</option>
+                        <option value="44" <%=theme==44 ? 'selected="true"' : '' %>>Romance</option>
                     </select>
-                    
+
                     <select class="card side-card select-dropdown" name="genre">
-                        <option disabled="disabled" <%= !genre ? 'selected="true"' : '' %>>Filter by Genres</option>
-                        <option value="2" <%= genre == 2 ? 'selected="true"' : '' %>>Point-and-click</option>
-                        <option value="4" <%= genre == 4 ? 'selected="true"' : '' %>>Fighting</option>
-                        <option value="5" <%= genre == 5 ? 'selected="true"' : '' %>>Shooter</option>
-                        <option value="7" <%= genre == 7 ? 'selected="true"' : '' %>>Music</option>
-                        <option value="8" <%= genre == 8 ? 'selected="true"' : '' %>>Platform</option>
-                        <option value="9" <%= genre == 9 ? 'selected="true"' : '' %>>Puzzle</option>
-                        <option value="10" <%= genre == 10 ? 'selected="true"' : '' %>>Racing</option>
-                        <option value="11" <%= genre == 12 ? 'selected="true"' : '' %>>Real Time Strategy (RTS)</option>
-                        <option value="12" <%= genre == 12 ? 'selected="true"' : '' %>>Role-playing (RPG)</option>
-                        <option value="13" <%= genre == 13 ? 'selected="true"' : '' %>>Simulator</option>
-                        <option value="14" <%= genre == 14 ? 'selected="true"' : '' %>>Sport</option>
-                        <option value="15" <%= genre == 15 ? 'selected="true"' : '' %>>Strategy</option>
-                        <option value="16" <%= genre == 16 ? 'selected="true"' : '' %>>Turn-based strategy (TBS)</option>
-                        <option value="24" <%= genre == 24 ? 'selected="true"' : '' %>>Tactical</option>
-                        <option value="25" <%= genre == 25 ? 'selected="true"' : '' %>>Hack and slash/Beat 'em up</option>
-                        <option value="26" <%= genre == 26 ? 'selected="true"' : '' %>>Quiz/Trivia</option>
-                        <option value="30" <%= genre == 30 ? 'selected="true"' : '' %>>Pinball</option>
-                        <option value="31" <%= genre == 31 ? 'selected="true"' : '' %>>Adventure</option>
-                        <option value="32" <%= genre == 32 ? 'selected="true"' : '' %>>Indie</option>
-                        <option value="33" <%= genre == 33 ? 'selected="true"' : '' %>>Arcade</option>
-                        <option value="34" <%= genre == 34 ? 'selected="true"' : '' %>>Visual Novel</option>
-                        <option value="35" <%= genre == 35 ? 'selected="true"' : '' %>>Card & Board Game</option>
-                        <option value="36" <%= genre == 36 ? 'selected="true"' : '' %>>MOBA</option>
+                        <option disabled="disabled" <%=!genre ? 'selected="true"' : '' %>>Filter by Genres</option>
+                        <option value="2" <%=genre==2 ? 'selected="true"' : '' %>>Point-and-click</option>
+                        <option value="4" <%=genre==4 ? 'selected="true"' : '' %>>Fighting</option>
+                        <option value="5" <%=genre==5 ? 'selected="true"' : '' %>>Shooter</option>
+                        <option value="7" <%=genre==7 ? 'selected="true"' : '' %>>Music</option>
+                        <option value="8" <%=genre==8 ? 'selected="true"' : '' %>>Platform</option>
+                        <option value="9" <%=genre==9 ? 'selected="true"' : '' %>>Puzzle</option>
+                        <option value="10" <%=genre==10 ? 'selected="true"' : '' %>>Racing</option>
+                        <option value="11" <%=genre==12 ? 'selected="true"' : '' %>>Real Time Strategy (RTS)</option>
+                        <option value="12" <%=genre==12 ? 'selected="true"' : '' %>>Role-playing (RPG)</option>
+                        <option value="13" <%=genre==13 ? 'selected="true"' : '' %>>Simulator</option>
+                        <option value="14" <%=genre==14 ? 'selected="true"' : '' %>>Sport</option>
+                        <option value="15" <%=genre==15 ? 'selected="true"' : '' %>>Strategy</option>
+                        <option value="16" <%=genre==16 ? 'selected="true"' : '' %>>Turn-based strategy (TBS)</option>
+                        <option value="24" <%=genre==24 ? 'selected="true"' : '' %>>Tactical</option>
+                        <option value="25" <%=genre==25 ? 'selected="true"' : '' %>>Hack and slash/Beat 'em up</option>
+                        <option value="26" <%=genre==26 ? 'selected="true"' : '' %>>Quiz/Trivia</option>
+                        <option value="30" <%=genre==30 ? 'selected="true"' : '' %>>Pinball</option>
+                        <option value="31" <%=genre==31 ? 'selected="true"' : '' %>>Adventure</option>
+                        <option value="32" <%=genre==32 ? 'selected="true"' : '' %>>Indie</option>
+                        <option value="33" <%=genre==33 ? 'selected="true"' : '' %>>Arcade</option>
+                        <option value="34" <%=genre==34 ? 'selected="true"' : '' %>>Visual Novel</option>
+                        <option value="35" <%=genre==35 ? 'selected="true"' : '' %>>Card & Board Game</option>
+                        <option value="36" <%=genre==36 ? 'selected="true"' : '' %>>MOBA</option>
                     </select>
 
                     <button type="submit" class="card form-button"><span>Apply Filters</span></button>
@@ -148,19 +143,8 @@
             </div>
         </div>
 
-        <footer>
-
-        </footer>
-        <script>
-            const slider = document.getElementById("range");
-            const output = document.getElementById("number");
-
-            output.innerHTML = "= " + slider.value;
-
-            slider.oninput = function () {
-                output.innerHTML = "= " + this.value;
-            }
-        </script>
+        <script src="/js/dark.js" defer></script>
+        <script src="/js/games.js" defer></script>
 </body>
 
 </html>

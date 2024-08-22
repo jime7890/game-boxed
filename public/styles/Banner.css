@@ -113,32 +113,30 @@
 }
 
 #theme-switch {
+  display: flex;
+  align-items: center;
   cursor: pointer;
   border: none;
   background-color: transparent;
   height: 25px;
 }
 
-.fa-moon,
-.fa-sun {
-  width: 45px;
+.cs-moon,
+.cs-sun {
+  width: 16px;
+  height: 15px;
   height: auto;
-  font-size: 1.15rem;
 }
 
-.fa-sun {
-  color: rgb(255, 179, 0);
-}
-
-#theme-switch i:last-child {
+#theme-switch svg:last-child {
   display: none;
 }
 
-.darkmode #theme-switch i:first-child {
+.darkmode #theme-switch svg:first-child {
   display: none;
 }
 
-.darkmode #theme-switch i:last-child {
+.darkmode #theme-switch svg:last-child {
   display: block;
 }
 

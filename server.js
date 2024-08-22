@@ -85,6 +85,7 @@ app.get('/games', async (req, res) => {
 
     try {
         const access_token = await getAccessToken();
+        console.log(access_token);
         const igdbResponse = await axios.post('https://api.igdb.com/v4/games', query, {
             headers: {
                 'Accept-Encoding': 'gzip',
@@ -126,6 +127,10 @@ app.get("/games/:slug/:game", async (req, res) => {
         res.redirect("games.ejs");
     }
 
+})
+
+app.get("/*", (req, res) => {
+    res.redirect("/");
 })
 
 app.listen(port, console.log(`Listening on port ${port}`))
