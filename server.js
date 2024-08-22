@@ -8,7 +8,7 @@ import compression from "compression";
 
 const app = express();
 const port = 3000;
-const cache = new NodeCache({ stdTTL: 3600 });
+const cache = new NodeCache({ stdTTL: 604800 });
 
 app.use(compression());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,6 +38,7 @@ const getAccessToken = async () => {
             }
         });
 
+        console.log(response.data);
         accessToken = response.data.access_token;
 
         // Access token is saved in the cache
@@ -76,7 +77,7 @@ app.get('/games', async (req, res) => {
 
         let baseQuery = "fields name, rating, cover.url, slug, first_release_date, themes, genres; sort rating asc;"
         let whereCondition = conditions.length > 0 ? `where ${conditions.join(' & ')};` : '';
-        let limit = "limit 25;"
+        let limit = "limit 20;"
 
         query = `${baseQuery} ${whereCondition} ${limit}`
     } else {
