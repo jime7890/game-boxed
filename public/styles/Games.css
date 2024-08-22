@@ -32,6 +32,59 @@ body {
   align-items: center;
 }
 
+.date-box {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  grid-template-areas: 
+  "gridTitle gridTitle"
+  "label input"
+  "label input";
+  align-items: center;
+  gap: 0.25rem;
+  color: white;
+}
+
+input[type="date"] {
+  grid-area: "input";  
+  padding: 0.25rem;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+input[type="date"] {
+  position: relative;
+}
+
+input[type="date"]::after {
+  content: "\1F4C5";
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+label {
+  grid-area: "label";
+}
+
+.date-title {
+  grid-area: gridTitle;
+}
+
+.date-input {
+  height: 35px;
+  color: var(--text-color);
+
+  background-color: var(--base-color);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  border-color: var(--border-color);
+}
+
 .select-dropdown {
   color: var(--text-color);
   border: none;
@@ -117,7 +170,7 @@ body {
   background-color: var(--search-bar);
   color: var(--text-color);
   border-style: none;
-  width: 235px;
+  width: 220px;
 }
 
 .search-bar:focus {
@@ -239,14 +292,28 @@ span {
 @media only screen and (max-width: 768px) {
   .container {
     grid-template-columns: 1fr;
-    gap: 0;
+    gap: 0rem;
+    /* grid-template-areas: 
+    "sideArea"
+    "mainArea"; */
+  }
+
+  /* .side-area {
+    grid-area: "sideArea";
+    position: relative;
+    top: 0rem;
+  }
+
+  .main-area {
+    grid-area: "mainArea";
+  } */
+
+  .side-area {
+    display: none;
   }
 
   .logo {
     display: none;
   }
 
-  .side-area {
-    display: none;
-  }
 }

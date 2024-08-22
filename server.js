@@ -38,7 +38,6 @@ const getAccessToken = async () => {
             }
         });
 
-        console.log(response.data);
         accessToken = response.data.access_token;
 
         // Access token is saved in the cache
@@ -54,13 +53,16 @@ const getAccessToken = async () => {
 
 app.get('/games', async (req, res) => {
     const searchQuery = req.query.search;
-    const { range, theme, genre } = req.query;
+    const { range, theme, genre, platform } = req.query;
 
+    // console.log("Min Release: " + req.query.min_release);
+    // console.log("Max Release: " + req.query.max_release);
+    
     let query = '';
 
     if (searchQuery) {
         query = `search "${searchQuery}"; fields name, rating, cover.url, slug, first_release_date;`;
-    } else if (range || theme || genre) {
+    } else if (range || theme || genre || platform) {
         let conditions = [];
 
         if (range) {
@@ -75,7 +77,11 @@ app.get('/games', async (req, res) => {
             conditions.push(`genres = ${genre}`)
         }
 
-        let baseQuery = "fields name, rating, cover.url, slug, first_release_date, themes, genres; sort rating asc;"
+        if(platform) {
+            conditions.push(`platforms = ${platform}`)
+        }
+
+        let baseQuery = "fields name, rating, cover.url, slug, first_release_date, themes, genres, platforms; sort rating asc;"
         let whereCondition = conditions.length > 0 ? `where ${conditions.join(' & ')};` : '';
         let limit = "limit 20;"
 
@@ -98,6 +104,7 @@ app.get('/games', async (req, res) => {
             range: range,
             theme: theme,
             genre: genre,
+            platform: platform,
             games: igdbResponse.data,
         });
 

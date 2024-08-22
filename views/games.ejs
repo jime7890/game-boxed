@@ -19,7 +19,7 @@
             <div class="side-area">
                 <form method="GET" class="filter-container">
                     <div class="card side-card">
-                        <label for="range" class="muted">
+                        <label for="range">
                             <span>Rating</span>
                             <span id="number">50</span>
                         </label>
@@ -84,6 +84,21 @@
                         <option value="35" <%=genre==35 ? 'selected="true"' : '' %>>Card & Board Game</option>
                         <option value="36" <%=genre==36 ? 'selected="true"' : '' %>>MOBA</option>
                     </select>
+
+                    <select class="card side-card select-dropdown" name="platform">
+                        <option disabled="disabled" <%=!platform ? 'selected="true"' : '' %>>Filter by Platform</option>
+                        <option value="6" <%=platform==6 ? 'selected="true"' : '' %>>Windows PC</option>
+                        <option value="49" <%=platform==49 ? 'selected="true"' : '' %>>Xbox One</option>
+                        <option value="48" <%=platform==48 ? 'selected="true"' : '' %>>Playstation 4</option>
+                    </select>
+<!-- 
+                    <div class="card date-box" name="release-date">
+                        <div class="date-title"><span>Release Date</span></div>
+                        <label for="input-release-min"><span>From</span></label>
+                        <input type="date" name="min_release" min="1970-01-01" max="2100-12-31" id="input-release-min" class="date-input">
+                        <label for="input-release-max"><span>To</span></label>
+                        <input type="date" name="max_release" min="1970-01-01" max="2100-12-31" id="input-release-max" class="date-input">
+                    </div> -->
 
                     <button type="submit" class="card form-button"><span>Apply Filters</span></button>
                     <a href="/games" class="card form-button link"><span>Reset Filters</span></a>
