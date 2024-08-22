@@ -24,6 +24,8 @@
 
   --search-bar: #ffffff;
   --border-color: #c7c7c7;
+
+  --logo-b-color: #ffffff;
 }
 
 .darkmode {
@@ -44,6 +46,8 @@
 
   --search-bar: #292b32;
   --border-color: rgb(62, 65, 76);
+
+  --logo-b-color: #000000;
 }
 
 .header {
@@ -56,20 +60,39 @@
   color: var(--text-color);
 }
 
-.logo {
+.logo-img {
+  width: auto;
+  height: 46px;
+  fill: var(--text-color)
+}
+
+.a {
+  fill: var(--text-color);
+}
+
+.b {
+  fill: var(--logo-b-color);
+}
+
+.logo-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.logo-title {
   font-size: 0.913rem;
   user-select: none;
   font-weight: 700;
 }
 
-.logo-link {
-  text-decoration: none;
-  color: var(--text-color);
-}
-
 .navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: auto;
   max-width: 70rem;
   padding: 12px;
@@ -120,7 +143,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .logo {
+  .logo-container {
     display: none;
   }
 }
