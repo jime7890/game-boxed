@@ -59,18 +59,18 @@ app.get('/games', async (req, res) => {
 
     if (searchQuery) {
         query = `search "${searchQuery}"; fields name, rating, cover.url, slug, first_release_date;`;
-    } else if(range || theme || genre) {
+    } else if (range || theme || genre) {
         let conditions = [];
 
-        if(range) {
+        if (range) {
             conditions.push(`rating = ${range}`)
-        } 
+        }
 
-        if(theme) {
+        if (theme) {
             conditions.push(`themes = ${theme}`)
         }
 
-        if(genre) {
+        if (genre) {
             conditions.push(`genres = ${genre}`)
         }
 
@@ -85,7 +85,6 @@ app.get('/games', async (req, res) => {
 
     try {
         const access_token = await getAccessToken();
-        console.log(access_token);
         const igdbResponse = await axios.post('https://api.igdb.com/v4/games', query, {
             headers: {
                 'Accept-Encoding': 'gzip',
