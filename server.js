@@ -63,7 +63,7 @@ app.get('/games', async (req, res) => {
         let conditions = [];
 
         if (range) {
-            conditions.push(`rating = ${range}`)
+            conditions.push(`rating >= ${range}`)
         }
 
         if (theme) {
@@ -74,9 +74,9 @@ app.get('/games', async (req, res) => {
             conditions.push(`genres = ${genre}`)
         }
 
-        let baseQuery = "fields name, rating, cover.url, slug, first_release_date, themes, genres;"
+        let baseQuery = "fields name, rating, cover.url, slug, first_release_date, themes, genres; sort rating asc;"
         let whereCondition = conditions.length > 0 ? `where ${conditions.join(' & ')};` : '';
-        let limit = "limit 20;"
+        let limit = "limit 25;"
 
         query = `${baseQuery} ${whereCondition} ${limit}`
     } else {
