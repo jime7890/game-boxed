@@ -84,7 +84,6 @@ body {
   border-radius: 12px;
 }
 
-
 .form-button {
   cursor: pointer;
   border-style: solid;
@@ -96,7 +95,6 @@ body {
 .form-button:hover {
   background-color: var(--card-hover-color);
 }
-
 
 .link {
   text-decoration: none;
@@ -119,7 +117,7 @@ body {
   background-color: var(--search-bar);
   color: var(--text-color);
   border-style: none;
-  width: 250px;
+  width: 235px;
 }
 
 .search-bar:focus {
@@ -135,6 +133,13 @@ body {
   background-color: var(--search-bar);
   color: var(--text-color);
   border-style: none;
+}
+
+.search-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  fill: var(--text-color);
 }
 
 .card {
