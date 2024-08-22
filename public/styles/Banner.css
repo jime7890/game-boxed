@@ -80,13 +80,13 @@
   align-items: center;
   gap: 0.35rem;
   text-decoration: none;
-  color: var(--text-color);
 }
 
 .logo-title {
   font-size: 0.913rem;
   user-select: none;
   font-weight: 700;
+  color: var(--text-color);
 }
 
 .navbar {
