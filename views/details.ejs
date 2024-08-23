@@ -23,8 +23,8 @@
                     class="hero-image"
                     loading="eager"
                     decoding="async"
-                    srcset="<%= games.artworks[0].url.replace('t_thumb', 't_original').replace('jpg', 'webp') %>"
-                    onerror="this.onerror=null; this.srcset=''; this.src='<%= games.artworks[0].url.replace('/t_thumb/', '/t_original/') %>'"                    
+                    srcset="<%= games.artworks[0].url.replace('t_thumb', 't_1080p').replace('jpg', 'webp') %>"
+                    onerror="this.onerror=null; this.srcset=''; this.src='<%= games.artworks[0].url.replace('/t_thumb/', '/t_1080p/') %>'"                    
                     />
             <% } else { %>
                 <div class="hero">
