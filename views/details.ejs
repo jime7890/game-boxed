@@ -17,39 +17,45 @@
 
         <!------------------------------ Header Container ------------------------------->
         <% if(locals.games) { %>
-            <div class="container">
-                <div>
-                    <% if(games.cover) { %>
-                        <img 
-                        src="<%= games.cover.url.replace('/t_thumb/', '/t_1080p/') %>"
-                        class="img"
-                        alt="Cover art of the game <%= games.name %>">
-                   <% } else { %>
-                    <div class="unknown-container unknown">
-                        <span>Image not found</span>
-                    </div>
-                  <% } %>
-                </div>
-
-                <div class="game-description">
-                    <div class="game-heading">
-                        <h4 class="title">
-                            <%= games.name %>
-                        </h4>
-
-                        <span class="release-date">
-                            <%= new Date((games.first_release_date * 1000) + new Date().getTimezoneOffset() *
-                                60000).toLocaleDateString('en-US', { year: 'numeric' , month: 'long' , day: 'numeric' })
-                                %>
-                        </span>
-                    </div>
-
+            <% if(locals.games.artworks && locals.games.artworks.length > 0) { %>
+                <div class="hero" style="background-image: url('<%= games.artworks[0].url.replace('t_thumb', 't_original').replace('jpg', 'webp') %>');">
+            <% } else { %>
+                <div class="hero">
+           <% } %>
+                <div class="hero-container">
                     <div>
-                        <h6 class="description muted">
-                            <%= games.summary %>
-                        </h6>
+                        <% if(games.cover) { %>
+                            <img 
+                            src="<%= games.cover.url.replace('/t_thumb/', '/t_1080p/') %>"
+                            class="img"
+                            alt="Cover art of the game <%= games.name %>">
+                       <% } else { %>
+                        <div class="unknown-container unknown">
+                            <span>Image not found</span>
+                        </div>
+                      <% } %>
                     </div>
-
+    
+                    <div class="game-description">
+                        <div class="game-heading">
+                            <h4 class="title">
+                                <%= games.name %>
+                            </h4>
+    
+                            <span class="release-date">
+                                <%= new Date((games.first_release_date * 1000) + new Date().getTimezoneOffset() *
+                                    60000).toLocaleDateString('en-US', { year: 'numeric' , month: 'long' , day: 'numeric' })
+                                    %>
+                            </span>
+                        </div>
+    
+                        <div>
+                            <h6 class="description">
+                                <%= games.summary %>
+                            </h6>
+                        </div>
+    
+                    </div>
                 </div>
             </div>
 
@@ -88,9 +94,7 @@
                                                             srcset="<%= image.url.replace('/t_thumb/', '/t_1080p/').replace('jpg', 'webp') %>"
                                                             onerror="this.onerror=null; this.srcset=''; this.src='<%= image.url.replace('/t_thumb/', '/t_720p/') %>'">        
                                                         <% }) %>
-                                                            <% } else { %>
-                                                                <% console.log("No screenshots were found"); %>
-                                                                    <% } %>
+                                                            <% } %>
                                             </div>
                                 </div>
                             </div>
@@ -171,6 +175,7 @@
                                         <% if(rating.rating == 1) { %>
                                             <img 
                                             loading="lazy" 
+                                            decoding="async"
                                             alt="PEGI Icon Rated 3"
                                             srcset="/assets/pegi_3.webp"
                                             onerror="this.onerror=null; this.srcset=''; this.src='/assets/pegi_3.png'"
@@ -180,6 +185,7 @@
                                         <% if(rating.rating == 2) { %>
                                             <img 
                                             loading="lazy" 
+                                            decoding="async"
                                             alt="PEGI Icon Rated 7"
                                             srcset="/assets/pegi_7.webp"
                                             onerror="this.onerror=null; this.srcset=''; this.src='/assets/pegi_7.png'"
@@ -189,6 +195,7 @@
                                         <% if(rating.rating == 3) { %>
                                             <img 
                                             loading="lazy" 
+                                            decoding="async"
                                             alt="PEGI Icon Rated 12"
                                             srcset="/assets/pegi_12.webp"
                                             onerror="this.onerror=null; this.srcset=''; this.src='/assets/pegi_12.png'"
@@ -198,6 +205,7 @@
                                         <% if(rating.rating == 4) { %>
                                             <img 
                                             loading="lazy" 
+                                            decoding="async"
                                             alt="PEGI Icon Rated 16"
                                             srcset="/assets/pegi_16.webp"
                                             onerror="this.onerror=null; this.srcset=''; this.src='/assets/pegi_16.png'"
@@ -207,6 +215,7 @@
                                         <% if(rating.rating == 5) { %>
                                             <img 
                                             loading="lazy" 
+                                            decoding="async"
                                             alt="PEGI Icon Rated 18"
                                             srcset="/assets/pegi_18.webp"
                                             onerror="this.onerror=null; this.srcset=''; this.src='/assets/pegi_18.png'"
@@ -216,6 +225,7 @@
                                         <% if(rating.rating == 8) { %>
                                             <img 
                                             loading="lazy" 
+                                            decoding="async"
                                             alt="ESRB Icon Rated E for everyone"
                                             srcset="/assets/esrb_e.webp"
                                             onerror="this.onerror=null; this.srcset=''; this.src='/assets/esrb_e.png'"
@@ -225,6 +235,7 @@
                                         <% if(rating.rating == 9) { %>
                                             <img 
                                             loading="lazy" 
+                                            decoding="async"
                                             alt="ESRB Icon Rated E for 10 and up"
                                             srcset="/assets/esrb_e10.webp"
                                             onerror="this.onerror=null; this.srcset=''; this.src='/assets/esrb_e10.png'"
@@ -234,6 +245,7 @@
                                         <% if(rating.rating == 10) { %>
                                             <img 
                                             loading="lazy" 
+                                            decoding="async"
                                             alt="ESRB Icon Rated Teen"
                                             srcset="/assets/esrb_t.webp"
                                             onerror="this.onerror=null; this.srcset=''; this.src='/assets/esrb_t.png'"
@@ -243,6 +255,7 @@
                                         <% if(rating.rating == 11) { %>
                                             <img 
                                             loading="lazy" 
+                                            decoding="async"
                                             alt="ESRB Icon Rated Mature"
                                             srcset="/assets/esrb_m.webp"
                                             onerror="this.onerror=null; this.srcset=''; this.src='/assets/esrb_m.png'"
