@@ -21,7 +21,6 @@
                     <img 
                     alt="Hero image of the game <%= games.name %>"
                     class="hero-image"
-                    loading="eager"
                     decoding="async"
                     srcset="<%= games.artworks[0].url.replace('t_thumb', 't_1080p').replace('jpg', 'webp') %>"
                     onerror="this.onerror=null; this.srcset=''; this.src='<%= games.artworks[0].url.replace('/t_thumb/', '/t_1080p/') %>'"                    
@@ -33,7 +32,9 @@
                     <div>
                         <% if(games.cover) { %>
                             <img 
-                            src="<%= games.cover.url.replace('/t_thumb/', '/t_1080p/') %>"
+                            decoding="async"
+                            srcset="<%= games.cover.url.replace('/t_thumb/', '/t_720p/').replace('jpg', 'webp') %>"
+                            onerror="this.onerror=null; this.srcset=''; this.src='<%= games.cover.url.replace('/t_thumb/', '/t_720p/') %>'"                    
                             class="img"
                             alt="Cover art of the game <%= games.name %>">
                        <% } else { %>
@@ -98,7 +99,7 @@
                                                             decoding="async"
                                                             loading="lazy"
                                                             alt="Screenshot of gameplay in <%= image.name %>"
-                                                            srcset="<%= image.url.replace('/t_thumb/', '/t_1080p/').replace('jpg', 'webp') %>"
+                                                            srcset="<%= image.url.replace('/t_thumb/', '/t_720p/').replace('jpg', 'webp') %>"
                                                             onerror="this.onerror=null; this.srcset=''; this.src='<%= image.url.replace('/t_thumb/', '/t_720p/') %>'">        
                                                         <% }) %>
                                                             <% } %>
