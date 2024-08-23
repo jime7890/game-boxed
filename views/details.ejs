@@ -19,10 +19,16 @@
         <% if(locals.games) { %>
             <div class="container">
                 <div>
-                    <img 
-                       src="<%= games.cover.url.replace('/t_thumb/', '/t_1080p/') %>"
-                       class="img"
-                       alt="Cover art of the game <%= games.name %>">
+                    <% if(games.cover) { %>
+                        <img 
+                        src="<%= games.cover.url.replace('/t_thumb/', '/t_1080p/') %>"
+                        class="img"
+                        alt="Cover art of the game <%= games.name %>">
+                   <% } else { %>
+                    <div class="unknown-container unknown">
+                        <span>Image not found</span>
+                    </div>
+                  <% } %>
                 </div>
 
                 <div class="game-description">
@@ -79,10 +85,9 @@
                                                             decoding="async"
                                                             loading="lazy"
                                                             alt="Screenshot of gameplay in <%= image.name %>"
-                                                            src="<%= image.url.replace('/t_thumb/', '/t_720p/') %>"
-                                                            srcset="<%= image.url.replace('/t_thumb/', '/t_1080p/').replace('jpg', 'webp') %>">
+                                                            srcset="<%= image.url.replace('/t_thumb/', '/t_1080p/').replace('jpg', 'webp') %>"
+                                                            onerror="this.onerror=null; this.srcset=''; this.src='<%= image.url.replace('/t_thumb/', '/t_720p/') %>'">        
                                                         <% }) %>
-
                                                             <% } else { %>
                                                                 <% console.log("No screenshots were found"); %>
                                                                     <% } %>
@@ -101,10 +106,7 @@
                                     <span class="muted">Developers: </span>
                                     <% locals.games.involved_companies.forEach((company, index, array)=> { %>
                                         <a href="<%= company.company.url %>" class="company">
-                                            <span>
-                                                <%= company.company.name %>
-                                                    <%= index===array.length - 1 ? '' : ',' %>
-                                            </span>
+                                            <span><%= company.company.name %><%= index===array.length - 1 ? '' : ',' %></span>
                                         </a>
                                         <% }) %>
                                 </div>
@@ -159,20 +161,89 @@
                         </div>
                     </div>
 
+
+                    <% if(locals.games.age_ratings) { %>
                     <div class="card">
                         <div class="right-column">
                             <h4>Age Ratings</h4>
-                            <div>
-                                <% if(locals.games.age_ratings) { %>
+                            <div class="rating-container">
                                     <% games.age_ratings.forEach((rating)=> { %>
-                                        <span>
-                                            <%= rating.category %>
-                                        </span>
+                                        <% if(rating.rating == 1) { %>
+                                            <img 
+                                            loading="lazy" 
+                                            srcset="/assets/pegi_3.webp"
+                                            onerror="this.onerror=null; this.srcset=''; this.src='/assets/pegi_3.png'"
+                                            class="rating-icon">
+                                        <% } %>
+
+                                        <% if(rating.rating == 2) { %>
+                                            <img 
+                                            loading="lazy" 
+                                            srcset="/assets/pegi_7.webp"
+                                            onerror="this.onerror=null; this.srcset=''; this.src='/assets/pegi_7.png'"
+                                            class="rating-icon">
+                                        <% } %>
+        
+                                        <% if(rating.rating == 3) { %>
+                                            <img 
+                                            loading="lazy" 
+                                            srcset="/assets/pegi_12.webp"
+                                            onerror="this.onerror=null; this.srcset=''; this.src='/assets/pegi_12.png'"
+                                            class="rating-icon">
+                                        <% } %>
+
+                                        <% if(rating.rating == 4) { %>
+                                            <img 
+                                            loading="lazy" 
+                                            srcset="/assets/pegi_16.webp"
+                                            onerror="this.onerror=null; this.srcset=''; this.src='/assets/pegi_16.png'"
+                                            class="rating-icon">
+                                        <% } %>
+                                        
+                                        <% if(rating.rating == 5) { %>
+                                            <img 
+                                            loading="lazy" 
+                                            srcset="/assets/pegi_18.webp"
+                                            onerror="this.onerror=null; this.srcset=''; this.src='/assets/pegi_18.png'"
+                                            class="rating-icon">
+                                        <% } %>
+
+                                        <% if(rating.rating == 8) { %>
+                                            <img 
+                                            loading="lazy" 
+                                            srcset="/assets/esrb_e.webp"
+                                            onerror="this.onerror=null; this.srcset=''; this.src='/assets/esrb_e.png'"
+                                            class="rating-icon">
+                                        <% } %>
+
+                                        <% if(rating.rating == 9) { %>
+                                            <img 
+                                            loading="lazy" 
+                                            srcset="/assets/esrb_e10.webp"
+                                            onerror="this.onerror=null; this.srcset=''; this.src='/assets/esrb_e10.png'"
+                                            class="rating-icon">
+                                        <% } %>
+                                        
+                                        <% if(rating.rating == 10) { %>
+                                            <img 
+                                            loading="lazy" 
+                                            srcset="/assets/esrb_t.webp"
+                                            onerror="this.onerror=null; this.srcset=''; this.src='/assets/esrb_t.png'"
+                                            class="rating-icon">
+                                        <% } %>
+
+                                        <% if(rating.rating == 11) { %>
+                                            <img 
+                                            loading="lazy" 
+                                            srcset="/assets/esrb_m.webp"
+                                            onerror="this.onerror=null; this.srcset=''; this.src='/assets/esrb_m.png'"
+                                            class="rating-icon">
+                                        <% } %>
                                         <% }) %>
-                                            <% } %>
                             </div>
                         </div>
                     </div>
+                    <% } %>
 
                     <div class="card">
                         <div class="right-column">

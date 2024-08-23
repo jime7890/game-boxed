@@ -54,9 +54,6 @@ const getAccessToken = async () => {
 app.get('/games', async (req, res) => {
     const searchQuery = req.query.search;
     const { range, theme, genre, platform } = req.query;
-
-    // console.log("Min Release: " + req.query.min_release);
-    // console.log("Max Release: " + req.query.max_release);
     
     let query = '';
 
@@ -124,7 +121,7 @@ app.get("/games/:slug/:game", async (req, res) => {
                 'Authorization': `Bearer ${access_token}`,
             }
         });
-
+        
         res.render("details.ejs", {
             games: igdbResponse.data[0]
         })

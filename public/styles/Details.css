@@ -63,6 +63,22 @@ span {
   border-radius: 4px;
 }
 
+.unknown-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.unknown {
+  object-fit: cover;
+  border-radius: 4px;
+  width: 202px;
+  height: 270px;
+  color: var(--text-color);
+  background-color: var(--border-color);
+}
+
 .custom-container {
   display: grid;
   gap: 1rem;
@@ -124,6 +140,16 @@ span {
   border-radius: 4px;
   width: 100%;
   height: auto;
+}
+
+.rating-container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.rating-icon {
+  width: 41px;
+  height: 60px;
 }
 
 .game-info {
