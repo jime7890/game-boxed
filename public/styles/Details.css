@@ -38,10 +38,10 @@ span {
   width: 100%;
   height: 100%;
   background-image: -webkit-gradient(
-    from(rgba(21, 31, 32, 0)),
+    from(rgba(79, 88, 111, 0.25)),
     to(var(--base-color))
   );
-  background-image: linear-gradient(180deg, rgba(22, 24, 29, 0.5), var(--base-color));
+  background-image: linear-gradient(180deg, rgba(79, 88, 111, 0.25), var(--base-color));
   z-index: -1;
 }
 
