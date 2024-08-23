@@ -6,7 +6,20 @@ body {
 .container {
   max-width: 70rem;
   margin: auto;
-  padding: 25px 12px;
+  padding: 0px 12px;
+}
+
+h1 {
+  font-size: 2rem;
+  color: rgb(35, 189, 255);
+}
+
+h2 {
+  color: var(--text-color);
+}
+
+h3 {
+  color: var(--text-color);
 }
 
 h4 {
@@ -24,4 +37,42 @@ h6 {
 span {
   font-size: 0.875rem;
   color: var(--text-color);
+}
+
+p {
+  color: white;
+  margin: 0.25rem 0 3.125rem
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  height: 80svh;
+  min-height: 80vh;
+}
+
+.start {
+  border-style: solid;
+  border-color: #71ca0b;  
+  background: linear-gradient(#71ca0b, #589b0b);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.start:hover {
+  background: linear-gradient(#81e70d, #589b0b);
+}
+
+.hero-image {
+  content: "";
+  position: absolute;
+  margin: 0;
+  width: 100%;
+  z-index: -1;
 }
