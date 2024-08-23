@@ -11,7 +11,7 @@ body {
 
 h1 {
   font-size: 2rem;
-  color: rgb(35, 189, 255);
+  color: rgb(35, 171, 255);
 }
 
 h2 {
@@ -40,7 +40,7 @@ span {
 }
 
 p {
-  color: white;
+  color: var(--text-color);
   margin: 0.25rem 0 3.125rem
 }
 
@@ -75,4 +75,5 @@ p {
   margin: 0;
   width: 100%;
   z-index: -1;
+
 }
