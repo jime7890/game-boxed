@@ -14,15 +14,22 @@
 
 <body>
     <%- include("partials/header") %>
-
         <!------------------------------ Header Container ------------------------------->
         <% if(locals.games) { %>
             <% if(locals.games.artworks && locals.games.artworks.length > 0) { %>
-                <div class="hero" style="background-image: url('<%= games.artworks[0].url.replace('t_thumb', 't_original').replace('jpg', 'webp') %>');">
+                <div class="hero">
+                    <img 
+                    alt="Hero image of the game <%= games.name %>"
+                    class="hero-image"
+                    loading="eager"
+                    decoding="async"
+                    srcset="<%= games.artworks[0].url.replace('t_thumb', 't_original').replace('jpg', 'webp') %>"
+                    onerror="this.onerror=null; this.srcset=''; this.src='<%= games.artworks[0].url.replace('/t_thumb/', '/t_original/') %>'"                    
+                    />
             <% } else { %>
                 <div class="hero">
            <% } %>
-                <div class="hero-container">
+                <div class="top-container">
                     <div>
                         <% if(games.cover) { %>
                             <img 
