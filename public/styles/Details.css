@@ -115,6 +115,7 @@ span {
 .read-more {
   color: var(--muted-text-color);
   cursor: pointer;
+  align-self: flex-start;
 }
 
 .read-more:hover {
