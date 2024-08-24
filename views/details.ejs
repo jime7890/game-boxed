@@ -20,6 +20,7 @@
                 <div class="hero">
                     <img 
                     alt="Hero image of the game <%= games.name %>"
+                    fetchpriority="high"
                     class="hero-image"
                     decoding="async"
                     srcset="<%= games.artworks[0].url.replace('t_thumb', 't_1080p').replace('jpg', 'webp') %>"
@@ -33,6 +34,7 @@
                         <% if(games.cover) { %>
                             <img 
                             decoding="async"
+                            fetchpriority="high"
                             srcset="<%= games.cover.url.replace('/t_thumb/', '/t_720p/').replace('jpg', 'webp') %>"
                             onerror="this.onerror=null; this.srcset=''; this.src='<%= games.cover.url.replace('/t_thumb/', '/t_720p/') %>'"                    
                             class="img"
@@ -98,6 +100,7 @@
                                                         <img class="screenshot" 
                                                             decoding="async"
                                                             loading="lazy"
+                                                            fetchpriority="low"
                                                             alt="Screenshot of gameplay in <%= image.name %>"
                                                             srcset="<%= image.url.replace('/t_thumb/', '/t_720p/').replace('jpg', 'webp') %>"
                                                             onerror="this.onerror=null; this.srcset=''; this.src='<%= image.url.replace('/t_thumb/', '/t_720p/') %>'">        
