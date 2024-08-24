@@ -108,7 +108,6 @@ span {
   font-size: 0.813rem;
   color: var(--text-color);
   font-weight: 400;
-
   display: flex;
   flex-direction: column;
 }
