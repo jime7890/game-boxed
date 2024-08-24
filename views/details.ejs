@@ -60,9 +60,9 @@
                         </div>
     
                         <p class="description">
-                            <% if(games.summary.length> 400) { %>
-                                <span><%= games.summary.slice(0,400); %><span id="dots">...</span><span id="more-text" style="display: none;"><%= games.summary.slice(400); %></span></span>
-                                <span onclick="myFunction()" id="read-more-button" class="read-more">Read more</span>
+                            <% if(locals.games.summary && locals.games.summary.length > 400) { %>
+                                    <span><%= games.summary.slice(0,400); %><span id="dots">...</span><span id="more-text" style="display: none;"><%= games.summary.slice(400); %></span></span>
+                                    <span onclick="myFunction()" id="read-more-button" class="read-more">Read more</span>
                                 <% } else { %>
                                     <%= games.summary %>
                                         <% } %>
