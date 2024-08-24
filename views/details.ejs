@@ -59,12 +59,14 @@
                             </span>
                         </div>
     
-                        <div>
-                            <p class="description">
-                                <%= games.summary %>
-                            </p>
-                        </div>
-    
+                        <p class="description">
+                            <% if(games.summary.length> 400) { %>
+                                <span><%= games.summary.slice(0,400); %><span id="dots">...</span><span id="more-text" style="display: none;"><%= games.summary.slice(400); %></span></span>
+                                <span onclick="myFunction()" id="read-more-button" class="read-more">Read more</span>
+                                <% } else { %>
+                                    <%= games.summary %>
+                                        <% } %>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -77,9 +79,9 @@
                         <div class="card">
                             <div class="div-spacing">
                                 <h2>Story</h2>
-                                <span class="muted">
+                                <p class="muted">
                                     <%= games.storyline %>
-                                </span>
+                                </p>
                             </div>
                         </div>
                         <% } %>
@@ -292,6 +294,23 @@
 
             <script src="/js/dark.js" defer></script>
             <script src="/js/lite-yt-embed.js" defer></script>
+            <script>
+                function myFunction () {
+                    var moreText = document.getElementById("more-text");
+                    var buttonText = document.getElementById("read-more-button");
+                    var dots = document.getElementById("dots");
+
+                    if(dots.style.display === "none") {
+                        dots.style.display = "inline";
+                        buttonText.innerHTML = "Read more";
+                        moreText.style.display = "none";
+                    } else {
+                        dots.style.display = "none";
+                        buttonText.innerHTML = "Show less";
+                        moreText.style.display = "inline";
+                    }
+                }
+            </script>
 </body>
 
 </html>
