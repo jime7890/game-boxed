@@ -2,7 +2,7 @@ body {
   background-color: var(--base-color);
 }
 
-h4 {
+h2 {
   font-weight: 600;
   color: var(--text-color);
   font-size: 0.875rem;

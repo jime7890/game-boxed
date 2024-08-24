@@ -76,7 +76,7 @@
                     <% if(locals.games.storyline) { %>
                         <div class="card">
                             <div class="div-spacing">
-                                <h4>Story</h4>
+                                <h2>Story</h2>
                                 <span class="muted">
                                     <%= games.storyline %>
                                 </span>
@@ -87,7 +87,7 @@
                             <!-- Media -->
                             <div class="card">
                                 <div class="div-spacing">
-                                    <h4>Media</h4>
+                                    <h2>Media</h2>
                                     <% if(locals.games.videos) { %>
                                         <div class="video-container">
                                                 <lite-youtube class="video" videoid="<%= games.videos[0].video_id %>" playlabel="Play: <%= games.videos[0].name %>"></lite-youtube>
@@ -114,7 +114,7 @@
                 <div class="card-gap">
                     <div class="card">
                         <div class="right-column">
-                            <h4>Behind the Game</h4>
+                            <h2>Behind the Game</h2>
 
                             <% if (locals.games.involved_companies && locals.games.involved_companies.length> 0) { %>
                                 <div>
@@ -133,7 +133,7 @@
 
                     <div class="card">
                         <div class="right-column">
-                            <h4>Game Information</h4>
+                            <h2>Game Information</h2>
 
                             <div>
                                 <% if(locals.games.game_modes) { %>
@@ -180,7 +180,7 @@
                     <% if(locals.games.age_ratings) { %>
                     <div class="card">
                         <div class="right-column">
-                            <h4>Age Ratings</h4>
+                            <h2>Age Ratings</h2>
                             <div class="rating-container">
                                     <% games.age_ratings.forEach((rating)=> { %>
                                         <% if(rating.rating == 1) { %>
@@ -280,7 +280,7 @@
 
                     <div class="card">
                         <div class="right-column">
-                            <h4>Language Support</h4>
+                            <h2>Language Support</h2>
                             <div>
 
                             </div>
