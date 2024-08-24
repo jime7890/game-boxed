@@ -92,6 +92,7 @@ span {
 
 .title {
   font-size: 1.15rem;
+  color: var(--text-color);
 }
 
 .release-date {
