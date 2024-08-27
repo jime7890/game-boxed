@@ -41,7 +41,7 @@ span {
 
 p {
   margin: 0.25rem 0 3.125rem;
-  color: white;
+  color: var(--text-color);
 }
 
 .hero {
