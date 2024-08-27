@@ -33,7 +33,7 @@ body {
 
 h1 {
   font-size: 2rem;
-  background: linear-gradient(rgb(38, 136, 255), rgb(0, 153, 255));
+  background: linear-gradient(rgb(38, 136, 255), rgb(0, 195, 255));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
