@@ -1,17 +1,41 @@
 body {
-  overflow-y: scroll;
   background-color: var(--base-color);
+  overflow-y: hidden;
 }
 
 .container {
   max-width: 70rem;
   margin: auto;
-  padding: 0px 12px;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  height: 100vh;
+}
+
+.hero-image {
+  position: absolute;
+  margin: 0;
+  z-index: -999;
+}
+
+.hero-image rect:nth-child(1) {
+  fill: var(--base-color)
+}
+
+.hero-image pattern circle {
+  fill: var(--svg-circle-fill);
 }
 
 h1 {
   font-size: 2rem;
-  color: rgb(35, 167, 255);
+  background: linear-gradient(rgb(38, 136, 255), rgb(0, 153, 255));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 h2 {
@@ -40,18 +64,8 @@ span {
 }
 
 p {
-  margin: 0.25rem 0 3.125rem;
-  color: var(--text-color);
-}
-
-.hero {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  height: 80svh;
-  min-height: 80vh;
+  margin: 0.25rem 0px 3.125rem;
+  color: var(--muted-text-color);
 }
 
 .start {
@@ -69,10 +83,6 @@ p {
   background: linear-gradient(#81e70d, #589b0b);
 }
 
-.hero-image {
-  content: "";
-  position: absolute;
-  margin: 0;
-  width: 100%;
-  z-index: -999;
+.start:active{
+  background: linear-gradient(#589b0b, #589b0b);
 }
