@@ -122,7 +122,7 @@
                                 <div>
                                     <span class="muted">Developers: </span>
                                     <% locals.games.involved_companies.forEach((company, index, array)=> { %>
-                                        <a href="<%= company.company.url %>" class="company">
+                                        <a href="/companies/<%= company.company.slug %>" class="company">
                                             <span><%= company.company.name %><%= index===array.length - 1 ? '' : ',' %></span>
                                         </a>
                                         <% }) %>
@@ -292,7 +292,7 @@
             </div>
             <% } %>
 
-            <script src="/js/dark.js" defer></script>
+            <script src="/js/light.js" defer></script>
             <script src="/js/details.js" defer></script>
             <script src="/js/lite-yt-embed.js" defer></script>
 </body>

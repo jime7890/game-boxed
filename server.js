@@ -54,7 +54,7 @@ const getAccessToken = async () => {
 app.get('/games', async (req, res) => {
     const searchQuery = req.query.search;
     const { range, theme, genre, platform } = req.query;
-    
+
     let query = '';
 
     if (searchQuery) {
@@ -74,7 +74,7 @@ app.get('/games', async (req, res) => {
             conditions.push(`genres = ${genre}`)
         }
 
-        if(platform) {
+        if (platform) {
             conditions.push(`platforms = ${platform}`)
         }
 
@@ -84,7 +84,7 @@ app.get('/games', async (req, res) => {
 
         query = `${baseQuery} ${whereCondition} ${limit}`
     } else {
-        query = `fields name, rating, cover.url, slug, first_release_date; where rating >= 85; limit 20;`;
+        query = `fields name, rating, cover.url, slug, first_release_date; where rating >= 93; limit 20;`;
     }
 
     try {
@@ -121,7 +121,9 @@ app.get("/games/:slug/:game", async (req, res) => {
                 'Authorization': `Bearer ${access_token}`,
             }
         });
-        
+
+        console.log(access_token)
+
         res.render("details.ejs", {
             games: igdbResponse.data[0]
         })
@@ -131,6 +133,27 @@ app.get("/games/:slug/:game", async (req, res) => {
         res.redirect("games.ejs");
     }
 
+})
+
+app.get("/companies/:company", async (req, res) => {
+    try {
+        const access_token = await getAccessToken();
+        const igdbResponse = await axios.post('https://api.igdb.com/v4/companies', `fields name, description, logo.url; where slug = "${req.params.company}";`, {
+            headers: {
+                'Accept-Encoding': 'gzip',
+                'Client-ID': process.env.IGDB_CLIENT_ID,
+                'Authorization': `Bearer ${access_token}`,
+            }
+        });
+
+        res.render("companies.ejs", {
+            company: igdbResponse.data[0]
+        })
+
+    } catch (error) {
+        console.error("There was an error executing this fetch request", error);
+        res.redirect("games.ejs");
+    }
 })
 
 app.get("/*", (req, res) => {

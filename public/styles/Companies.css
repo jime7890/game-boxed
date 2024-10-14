@@ -1,0 +1,27 @@
+body {
+  background-color: var(--base-color);
+}
+
+.container {
+  max-width: 920px;
+  margin: auto;
+  padding: 25px 12px;
+  color: var(--text-color);
+}
+
+.title {
+  font-size: 1.15rem;
+  color: var(--text-color);
+}
+
+.intro {
+  display: flex;
+  justify-content: left;
+  gap: 1rem;
+}
+
+.logo {
+  background-color: white;
+  padding: 0.25rem;
+  border-radius: 6px;
+}

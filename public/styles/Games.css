@@ -4,17 +4,26 @@ body {
 
 .container {
   display: grid;
-  grid-template-columns: 0.30fr 0.75fr;
-  grid-template-areas: "sideArea mainArea";
+  grid-template-columns: 0.3fr 0.75fr;
+  grid-template-areas:
+    "titleArea titleArea"
+    "sideArea mainArea";
+
   gap: 1rem;
-  max-width: 915px;
+  max-width: 920px;
   margin: auto;
   padding: 25px 12px;
 }
 
+.title {
+  grid-area: titleArea;
+  font-size: 1.5rem;
+  color: var(--text-color);
+}
+
 .side-area {
   position: sticky;
-  grid-area: "sideArea";
+  grid-area: sideArea;
   top: 4rem;
   align-self: start;
 }
@@ -35,17 +44,17 @@ body {
 .date-box {
   display: grid;
   grid-template-columns: 0.5fr 1fr;
-  grid-template-areas: 
-  "gridTitle gridTitle"
-  "label input"
-  "label input";
+  grid-template-areas:
+    "gridTitle gridTitle"
+    "label input"
+    "label input";
   align-items: center;
   gap: 0.25rem;
   color: white;
 }
 
 input[type="date"] {
-  grid-area: "input";  
+  grid-area: "input";
   padding: 0.25rem;
 }
 
@@ -67,7 +76,7 @@ input[type="date"]::after {
 }
 
 label {
-  grid-area: "label";
+  grid-area: label;
 }
 
 .date-title {
@@ -118,31 +127,31 @@ label {
 }
 
 #range::-webkit-slider-thumb {
-  -webkit-appearance: none; 
+  -webkit-appearance: none;
   appearance: none;
   background-color: #0877ff;
   height: 1rem;
-  width: 1rem;    
+  width: 1rem;
   border-radius: 12px;
   margin-top: -4px;
 }
 
 #range::-moz-range-thumb {
   border: none;
-  -webkit-appearance: none; 
+  -webkit-appearance: none;
   appearance: none;
   background-color: #0877ff;
   height: 1rem;
-  width: 1rem;    
+  width: 1rem;
   border-radius: 12px;
 }
 
 .form-button {
   cursor: pointer;
-  border-style: solid;
-  border-width: 0.25px;
-  border-color: var(--border-color);
   color: var(--text-color);
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--border-color);
 }
 
 .form-button:hover {
@@ -163,14 +172,19 @@ label {
   border-width: 1px;
   border-radius: 4px;
   height: 35px;
+  width: 50%;
   border-color: var(--border-color);
+}
+
+.search-form:focus-within {
+  border-color: var(--text-color);
 }
 
 .search-bar {
   background-color: var(--search-bar);
   color: var(--text-color);
   border-style: none;
-  width: 220px;
+  width: 100%;
 }
 
 .search-bar:focus {
@@ -199,14 +213,16 @@ label {
   background-color: var(--card-background-color);
   padding: 0.75rem;
   border-radius: 4px;
-  box-shadow: rgba(32, 35, 40, 0.25) 0px 1px 1px,
-    rgba(32, 35, 40, 0.13) 0px 0px 1px 1px;
+
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--border-color);
 }
 
 .main-area {
   display: flex;
   flex-direction: column;
-  grid-area: "mainArea";
+  grid-area: mainArea;
   gap: 1rem;
   height: 100%;
 }
@@ -271,10 +287,10 @@ h6 {
 h4 {
   font-weight: 600;
   color: var(--text-color);
-  font-size: 0.875rem;
+  font-size: 0.813rem;
 }
 
-span {
+span, select {
   font-size: 0.813rem;
   color: var(--text-color);
 }
@@ -292,21 +308,17 @@ span {
 @media only screen and (max-width: 768px) {
   .container {
     grid-template-columns: 1fr;
+    grid-template-areas: "mainArea";
     gap: 0rem;
-    /* grid-template-areas: 
-    "sideArea"
-    "mainArea"; */
   }
 
-  /* .side-area {
-    grid-area: "sideArea";
-    position: relative;
-    top: 0rem;
+  .search-form {
+    width: 100%;
   }
 
-  .main-area {
-    grid-area: "mainArea";
-  } */
+  .title {
+    display: none;
+  }
 
   .side-area {
     display: none;
@@ -315,5 +327,4 @@ span {
   .logo {
     display: none;
   }
-
 }

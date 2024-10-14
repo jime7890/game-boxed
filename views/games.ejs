@@ -16,6 +16,8 @@
 <body>
     <%- include("partials/header") %>
         <div class="container">
+            <h1 class="title">Games</h1>
+
             <div class="side-area">
                 <form method="GET" class="filter-container">
                     <div class="card side-card">
@@ -91,7 +93,7 @@
                         <option value="49" <%=platform==49 ? 'selected="true"' : '' %>>Xbox One</option>
                         <option value="48" <%=platform==48 ? 'selected="true"' : '' %>>Playstation 4</option>
                     </select>
-<!-- 
+                    <!-- 
                     <div class="card date-box" name="release-date">
                         <div class="date-title"><span>Release Date</span></div>
                         <label for="input-release-min"><span>From</span></label>
@@ -105,19 +107,18 @@
                 </form>
             </div>
 
-            
+
 
             <div class="main-area">
-                <div class="search-container">
-                    <form action="/games" method="GET" class="search-form">
-                        <input type="text" name="search" class="search-bar" placeholder="Search...">
-                        <button type="submit" class="submit-button" aria-label="Search">
-                            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
-                            </svg>
-                        </button>
-                    </form>
-                </div>
+                <form action="/games" method="GET" class="search-form">
+                    <input type="text" name="search" class="search-bar" placeholder="Search...">
+                    <button type="submit" class="submit-button" aria-label="Search">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path
+                                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+                        </svg>
+                    </button>
+                </form>
 
                 <% if(locals.games) { %>
                     <% games.forEach((gameEntry)=> { %>
@@ -150,11 +151,25 @@
                                             </div>
 
                                             <div class="score">
-                                                <h4>
+                                                <% if(gameEntry.rating >= 80) { %>
+                                                <h4 style="color: #5dbb00;">
                                                     <%= Math.floor(gameEntry.rating) %>
                                                 </h4>
+                                               <% } else if(gameEntry.rating >= 70 && gameEntry.rating < 80) { %>
+                                                    <h4 style="color: yellow;">
+                                                        <%= Math.floor(gameEntry.rating) %>
+                                                    </h4>
+                                               <% } else if(gameEntry.rating >= 60 && gameEntry.rating < 70) { %>
+                                                    <h4 style="color: orange;">
+                                                        <%= Math.floor(gameEntry.rating) %>
+                                                    </h4>
+                                               <% } else { %>
+                                                    <h4 style="color: red;">
+                                                        <%= Math.floor(gameEntry.rating) %>
+                                                    </h4>
+                                               <% } %>
                                             </div>
-                            </div>
+                                </div>
                         </a>
 
                         <% }) %>
@@ -162,7 +177,7 @@
             </div>
         </div>
 
-        <script src="/js/dark.js" defer></script>
+        <script src="/js/light.js" defer></script>
         <script src="/js/games.js" defer></script>
 </body>
 

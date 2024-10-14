@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/Banner.css" />
+    <link rel="stylesheet" href="/styles/Companies.css" />
+    <link rel="stylesheet" href="/styles/lite-yt-embed.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Game Boxed is a database of millions of games using IGDB's API.">
+    <title>Game Boxed</title>
+</head>
+
+<body>
+    <%- include("partials/header") %>
+        <!------------------------------ Header Container ------------------------------->
+        <div class="container">
+            <div class="intro">
+                <img src="<%= company.logo.url.replace('/t_thumb/', '/t_cover_big/').replace('.jpg', '.png') %>" class="logo"/>
+
+                <div>
+                    <h1 class="title">
+                        <%= company.name %>
+                    </h1>
+
+                    <%= company.description %>
+                </div>
+            </div>
+        </div>
+
+        <script src="/js/light.js" defer></script>
+        <script src="/js/details.js" defer></script>
+        <script src="/js/lite-yt-embed.js" defer></script>
+</body>
+
+</html>

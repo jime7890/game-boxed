@@ -3,34 +3,10 @@
   padding: 0;
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
-  /* transition: all 0.2s ease, color 0.2s ease; */
+  transition: all 0.1s ease, color 0.1s ease;
 }
 
 :root {
-  --base-color: #f9fbfd;
-
-  --text-color: #000000;
-  --muted-text-color: #606060;
-
-  --card-background-color: #ffffff;
-  --card-hover-color: rgb(238, 238, 238);
-
-  --range-slider-color: #c7c7c7;
-
-  --link-color: rgb(238, 238, 238);
-  --link-hover-color: rgb(227, 227, 227);
-
-  --banner-background: #ffffff;
-
-  --svg-circle-fill: #c7c7c7;
-
-  --search-bar: #ffffff;
-  --border-color: #c7c7c7;
-
-  --logo-b-color: #ffffff;
-}
-
-.darkmode {
   --base-color: #1c1d22;
 
   --text-color: #ffffff;
@@ -52,6 +28,30 @@
   --border-color: rgb(62, 65, 76);
 
   --logo-b-color: #000000;
+}
+
+.lightmode {
+  --base-color: #f9fbfd;
+
+  --text-color: #000000;
+  --muted-text-color: #606060;
+
+  --card-background-color: #ffffff;
+  --card-hover-color: rgb(242, 243, 244);
+
+  --range-slider-color: #c7c7c7;
+
+  --link-color: rgb(238, 238, 238);
+  --link-hover-color: rgb(227, 227, 227);
+
+  --banner-background: #ffffff;
+
+  --svg-circle-fill: #c7c7c7;
+
+  --search-bar: #ffffff;
+  --border-color: #c7c7c7;
+
+  --logo-b-color: #ffffff;
 }
 
 .header {
@@ -135,11 +135,11 @@
   display: none;
 }
 
-.darkmode #theme-switch svg:first-child {
+.lightmode #theme-switch svg:first-child {
   display: none;
 }
 
-.darkmode #theme-switch svg:last-child {
+.lightmode #theme-switch svg:last-child {
   display: block;
 }
 
