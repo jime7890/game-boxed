@@ -23,12 +23,9 @@ app.get("/", (req, res) => {
 const getAccessToken = async () => {
     let accessToken = cache.get('igdbAccessToken');
 
-    // If there's already an access token in the cache, use that and end the function
     if (accessToken) {
         return accessToken;
     }
-
-    // Requests an access token
     try {
         const response = await axios.post("https://id.twitch.tv/oauth2/token", null, {
             params: {
@@ -39,11 +36,8 @@ const getAccessToken = async () => {
         });
 
         accessToken = response.data.access_token;
-
-        // Access token is saved in the cache
         cache.set('igdbAccessToken', accessToken);
 
-        // Returns the a new token back to the calling function
         return accessToken;
     } catch (error) {
         console.error("Error fetching access token", error);
@@ -52,62 +46,74 @@ const getAccessToken = async () => {
 };
 
 app.get('/games', async (req, res) => {
-    const searchQuery = req.query.search;
-    const { range, theme, genre, platform } = req.query;
+    const { search, range, theme, genre, platform, page = 1, limit = 20 } = req.query;
+    const offset = (page - 1) * limit;
 
     let query = '';
+    let countQuery = '';
 
-    if (searchQuery) {
-        query = `search "${searchQuery}"; fields name, rating, cover.url, slug, first_release_date;`;
-    } else if (range || theme || genre || platform) {
+    if (search) {
+        query = `search "${search}"; fields name, rating, cover.url, slug, first_release_date; limit ${limit}; offset ${offset};`;
+        countQuery = `search "${search}"; count;`;
+    } else {
         let conditions = [];
 
         if (range) {
-            conditions.push(`rating >= ${range}`)
+            conditions.push(`rating >= ${range}`);
         }
-
         if (theme) {
-            conditions.push(`themes = ${theme}`)
+            conditions.push(`themes = ${theme}`);
         }
-
         if (genre) {
-            conditions.push(`genres = ${genre}`)
+            conditions.push(`genres = ${genre}`);
         }
-
         if (platform) {
-            conditions.push(`platforms = ${platform}`)
+            conditions.push(`platforms = ${platform}`);
         }
 
-        let baseQuery = "fields name, rating, cover.url, slug, first_release_date, themes, genres, platforms; sort rating asc;"
-        let whereCondition = conditions.length > 0 ? `where ${conditions.join(' & ')};` : '';
-        let limit = "limit 20;"
+        let whereClause = conditions.length > 0 ? `where ${conditions.join(' & ')}` : 'where rating >= 93';
 
-        query = `${baseQuery} ${whereCondition} ${limit}`
-    } else {
-        query = `fields name, rating, cover.url, slug, first_release_date; where rating >= 93; limit 20;`;
+        query = `fields name, rating, cover.url, slug, first_release_date, themes, genres, platforms; ${whereClause}; sort rating asc; limit ${limit}; offset ${offset};`;
+        countQuery = `${whereClause}; count;`;
     }
 
     try {
         const access_token = await getAccessToken();
-        const igdbResponse = await axios.post('https://api.igdb.com/v4/games', query, {
-            headers: {
-                'Accept-Encoding': 'gzip',
-                'Client-ID': process.env.IGDB_CLIENT_ID,
-                'Authorization': `Bearer ${access_token}`,
-            }
-        });
+        const [gamesResponse, countResponse] = await Promise.all([
+            axios.post('https://api.igdb.com/v4/games', query, {
+                headers: {
+                    'Accept-Encoding': 'gzip',
+                    'Client-ID': process.env.IGDB_CLIENT_ID,
+                    'Authorization': `Bearer ${access_token}`,
+                }
+            }),
+            axios.post('https://api.igdb.com/v4/games/count', countQuery, {
+                headers: {
+                    'Accept-Encoding': 'gzip',
+                    'Client-ID': process.env.IGDB_CLIENT_ID,
+                    'Authorization': `Bearer ${access_token}`,
+                }
+            })
+        ]);
+
+        const totalGames = countResponse.data.count;
+        const totalPages = Math.ceil(totalGames / limit);
 
         res.render('games.ejs', {
-            range: range,
-            theme: theme,
-            genre: genre,
-            platform: platform,
-            games: igdbResponse.data,
+            games: gamesResponse.data,
+            currentPage: parseInt(page),
+            totalPages,
+            limit: parseInt(limit),
+            search,
+            range,
+            theme,
+            genre,
+            platform
         });
 
     } catch (error) {
-        console.error("There was an error fetching the access token", error);
-        res.redirect("landing.ejs");
+        console.error("There was an error fetching the games", error);
+        res.status(500).render("error.ejs", { error: "Failed to fetch games" });
     }
 });
 
@@ -132,7 +138,6 @@ app.get("/games/:slug/:game", async (req, res) => {
         console.error("There was an error executing this fetch request", error);
         res.redirect("games.ejs");
     }
-
 })
 
 app.get("/companies/:company", async (req, res) => {

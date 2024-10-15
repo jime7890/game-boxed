@@ -126,6 +126,9 @@ span {
   width: 202px;
   height: 270px;
   border-radius: 4px;
+  border-style: solid;
+  border-color: var(--border-color);
+  border-width: 1px;
 }
 
 .unknown-container {
